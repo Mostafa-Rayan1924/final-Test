@@ -1,5 +1,6 @@
 import logo from "../../img/assets/logo.svg";
 import menu from "../../img/assets/bars.svg";
+import menuWhite from "../../img/assets/white bars.jpg";
 
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -24,7 +25,7 @@ const Navbar = () => {
     }
   };
   return (
-    <header onClick={handleOpen} className="py-6 head">
+    <header className="py-6 head">
       <div className="container flex items-center justify-between">
         <Link to={"/"}>
           <img
@@ -84,11 +85,15 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="sm:hidden relative cursor-pointer  ">
+        <div
+          onClick={handleOpen}
+          className="sm:hidden relative cursor-pointer  ">
           {themes ? (
-            <i
+            <img
+              src={menuWhite}
               onClick={() => setNav(true)}
-              className="fa-solid fa-bars text-white text-4xl"></i>
+              className="w-10 h-10"
+            />
           ) : (
             <img onClick={() => setNav(true)} src={menu} alt="menuMobile" />
           )}
