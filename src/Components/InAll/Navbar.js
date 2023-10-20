@@ -1,7 +1,5 @@
 import logo from "../../img/assets/logo.svg";
 import menu from "../../img/assets/bars.svg";
-import menuWhite from "../../img/assets/white bars.jpg";
-
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { Theme } from "../../contexts/themeContext";
@@ -89,11 +87,18 @@ const Navbar = () => {
           onClick={handleOpen}
           className="sm:hidden relative cursor-pointer  ">
           {themes ? (
-            <img
-              src={menuWhite}
+            <svg
               onClick={() => setNav(true)}
-              className="w-10 h-10"
-            />
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="20"
+              viewBox="0 0 32 20"
+              fill="none">
+              <path
+                d="M0 20V16.6667H32V20H0ZM0 11.6667V8.33333H32V11.6667H0ZM0 3.33333V0H32V3.33333H0Z"
+                fill="white"
+              />
+            </svg>
           ) : (
             <img onClick={() => setNav(true)} src={menu} alt="menuMobile" />
           )}
