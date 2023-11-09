@@ -19,11 +19,11 @@ const GetReport = ({ item }) => {
       </div>
       <div className="flex justify-between gap-4 items-center mb-5">
         <h2>المعدات</h2>
-        <p className="text-[#666666B2] leading-loose">{item.Supplies}</p>
+        <p className="text-[#666666B2] leading-loose">{item.Equipments}</p>
       </div>
       <div className="flex justify-between gap-4 items-center mb-5">
         <h2>التوريدات</h2>
-        <p className="text-[#666666B2] leading-loose">{item.Equipments}</p>
+        <p className="text-[#666666B2] leading-loose">{item.Supplies}</p>
       </div>
       {item.file ? (
         <>

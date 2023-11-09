@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/Auth";
 import Login from "./Login";
 
-const RequireAuth = ({ children }) => {
+const RequireAuth = () => {
   let { auth, setAuth } = useContext(authContext);
 
   return auth.token ? <Outlet /> : <Login />;

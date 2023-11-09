@@ -15,9 +15,7 @@ const Login = () => {
     name: "",
     password: "test1234",
   });
-  if (load) {
-    return <Loader />;
-  }
+
   async function handleSubmit(e) {
     setLoad(true);
     e.preventDefault();
@@ -66,6 +64,7 @@ const Login = () => {
   }
   return (
     <>
+      {load && <Loader />}
       <div>
         <div className="flex h-screen">
           <div className="max-w-full mx-auto md:w-[60%] lg:w-1/2 h-full ">

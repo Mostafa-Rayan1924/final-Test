@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { authContext } from "../../contexts/Auth";
 import { NavLink } from "react-router-dom";
+import Error from "../InAll/Error";
 
 const ShowElements = () => {
   let { auth, setAuth } = useContext(authContext);
@@ -157,7 +158,7 @@ const ShowElements = () => {
           </NavLink>
         </ul>
       ) : (
-        ""
+        <Error />
       )}
       {/* list of maktab */}
       {auth.user?.role == "مكتب فني" ? (

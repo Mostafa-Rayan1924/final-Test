@@ -36,12 +36,11 @@ const TasksToMake = ({ makeDone = true }) => {
       </h2>
       {/* task */}
       <div className="grid grid-cols-1 ">
-        {/* {dataOfMyTask.length == 0 ? (
-          <h1 className="text-4xl">لا يوجد 'طلبات' الان</h1>
+        {dataOfMyTask.length == 0 ? (
+          <h1 className="text-4xl">لا يوجد طلبات الان</h1>
         ) : (
           dataOfMyTaskMaping
-        )} */}
-        {dataOfMyTaskMaping}
+        )}
       </div>
     </div>
   );
