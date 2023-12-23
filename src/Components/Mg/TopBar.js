@@ -2,7 +2,7 @@ import logo from "../../img/assets/logo.svg";
 import bars from "../../img/assets/bars.svg";
 import { useContext, useState } from "react";
 import imgProfile from "../../img/aboutImg/avatar-05.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/Auth";
 import Swal from "sweetalert2";
 import ShowElements from "./ShowElements";
@@ -26,19 +26,24 @@ const TopBar = () => {
   }
   return (
     <header
+      className="w-full lg:hidden flex"
       onClick={() => {
         if (side) {
           setSide(false);
         }
       }}>
-      <div className="container flex  items-center justify-between">
-        <img src={logo} />
-        <div>
+      <div className="container w-full  flex  items-center justify-between">
+        <div className="flex items-center justify-between w-full">
+          <Link to={"/"}>
+            <img src={logo} />
+          </Link>
           <img
             className="cursor-pointer"
             onClick={() => setSide(true)}
             src={bars}
           />
+        </div>
+        <div>
           <div
             className={`transition-all duration-300 fixed top-0 ${
               side ? "left-0" : "left-[-100%]"

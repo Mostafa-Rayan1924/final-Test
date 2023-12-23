@@ -25,17 +25,17 @@ const TasksToMake = ({ makeDone = true }) => {
         console.log(error.response?.data?.message);
       });
   }, []);
-
+  // py-[30px]
   return (
-    <div className="py-[30px] sm:mr-[60px] max-w-[800px] mb-5 mx-auto container">
+    <div className="py-[30px] sm:mr-[60px] sm:max-w-[600px] md:max-w-[800px] mb-5 mx-auto container ">
       <Link to={"/"}>
-        <img className="md:block hidden" src={logo} />
+        <img className="lg:block hidden" src={logo} />
       </Link>
       <h2 className="my-10 text-yellow-400 text-3xl lg:text-5xl font-bold ">
         استقبال الطلبات
       </h2>
       {/* task */}
-      <div className="grid grid-cols-1 ">
+      <div className="grid grid-cols-1   ">
         {dataOfMyTask.length == 0 ? (
           <h1 className="text-4xl">لا يوجد طلبات الان</h1>
         ) : (

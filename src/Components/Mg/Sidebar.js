@@ -14,10 +14,8 @@ const Sidebar = () => {
       axios
         .get("https://nutty-yoke-fish.cyclic.app/mg/users/logout")
         .then((res) => {
-          console.log(res.data);
           localStorage.removeItem("token");
           localStorage.removeItem("user");
-          window.location.reload();
           Swal.fire({
             icon: "success",
             title: "oKay...",
@@ -30,11 +28,12 @@ const Sidebar = () => {
       nav("/", { replace: true });
     }
   }
+  // h-screen  fixed   w-[270px] flex flex-col text-center md:text-start bg-yellow-400
   return (
-    <div className="h-screen  fixed   w-[270px] flex flex-col text-center md:text-start bg-yellow-400">
-      <div className="py-[100px] md:px-4 lg:pr-10">
+    <div className="h-screen w-[20%] fixed  flex flex-col  text-center md:text-start bg-yellow-400">
+      <div className="py-[100px]  lg:px-6">
         <img
-          className="max-w-full md:w-20 md:h-20 lg:w-24 lg:h-24 bg-black rounded-[16px] object-cover"
+          className="max-w-full md:w-20 md:h-20 lg:w-24 lg:h-24  bg-black rounded-[16px] object-cover"
           src={imgProfile}
         />
         <h2 className="text-white mt-3 mb-1 font-bold">

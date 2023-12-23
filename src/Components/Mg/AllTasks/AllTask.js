@@ -54,7 +54,7 @@ const AllTask = ({ managerTasks }) => {
   return (
     <div className="pt-[30px]  md:mx-6  mb-5 container ">
       <Link to={"/"}>
-        <img className="md:block hidden" src={logo} />
+        <img className="lg:block hidden" src={logo} />
       </Link>
       <h2 className="my-10 text-yellow-400 text-3xl lg:text-5xl font-bold ">
         جميع الطلبات

@@ -5,19 +5,17 @@ import TopBar from "./TopBar";
 
 const Dashboard = () => {
   return (
-    <div className=" flex flex-col md:flex-row gap-4 ">
-      <div className="w-full md:w-[300px] md:min-h-screen">
-        <div className="hidden h-full w-full md:flex">
+    <>
+      <TopBar />
+      <div className="flex gap-5 justify-between">
+        <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className=" md:hidden ">
-          <TopBar />
+        <div className="flex-1 lg:mr-[230px]">
+          <Outlet />
         </div>
       </div>
-      <div className="w-full lg:w-[80%]">
-        <Outlet />
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -158,7 +158,7 @@ const ShowElements = () => {
           </NavLink>
         </ul>
       ) : (
-        <Error />
+        ""
       )}
       {/* list of maktab */}
       {auth.user?.role == "مكتب فني" ? (

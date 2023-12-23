@@ -16,7 +16,7 @@ const OurMsgBox = ({ msg, desc, img, btn = false }) => {
       <div className="w-full lg:w-1/2">
         <img
           src={img}
-          className="h-[410px] mb-3 p-5 border-2 rounded-lg max-w-full object-cover "></img>
+          className="h-[410px] mb-3 p-5 border-2 rounded-lg max-w-full object-cover mx-auto "></img>
         <Link to={"/about"}>{btn ? <Btn title={"قراءه المزيد"} /> : ""}</Link>
       </div>
     </div>

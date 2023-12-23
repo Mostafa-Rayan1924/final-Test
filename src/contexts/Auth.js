@@ -4,7 +4,7 @@ export let authContext = createContext({});
 
 export function AuthContextProvider({ children }) {
   let [auth, setAuth] = useState({});
-  let nav = useNavigate();
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     let user = JSON.parse(localStorage.getItem("user"));

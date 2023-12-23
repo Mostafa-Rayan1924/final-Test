@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../img/assets/login.png";
 import logo from "../../img/assets/logo.svg";
 import Loader from "../InAll/Loader/Loader";
@@ -8,6 +8,7 @@ import { authContext } from "../../contexts/Auth";
 // import to sweet alert
 import Swal from "sweetalert2";
 const Login = () => {
+  // variables
   let [load, setLoad] = useState(false);
   let navigate = useNavigate();
   let { auth, setAuth } = useContext(authContext);
@@ -15,11 +16,12 @@ const Login = () => {
     name: "",
     password: "test1234",
   });
-
+  // send login
   async function handleSubmit(e) {
     setLoad(true);
     e.preventDefault();
-    // setFormInputs({ ...formInputs, name: "", password: "" });
+
+    // body parameter of req
     let params = {
       email: formInputs.name,
       password: formInputs.password,
@@ -28,29 +30,25 @@ const Login = () => {
       .post("https://nutty-yoke-fish.cyclic.app/mg/users/login", params)
       .then(function (response) {
         setLoad(false);
+        // alert for success
         Swal.fire({
           icon: "success",
           title: "oKay...",
           text: "you Logged in successfully",
         });
+        // data of user and token
         let userInfo = response.data.data.result;
         let token = response.data.token;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(userInfo));
-        setAuth({ user: userInfo, token: token });
-        if (response.data.data.result.role == "مدير") {
-          navigate("/mgsystem/dashboard/dailyTaskSend");
-        } else if (
-          response.data.data.result.role == "مهندس مدني" ||
-          response.data.data.result.role == "مشرف" ||
-          response.data.data.result.role == "محاسب"
-        ) {
-          navigate("/mgsystem/dashboard/dailyTask");
-        } else if (response.data.data.result.role == "مكتب فني") {
-          navigate("/mgsystem/dashboard/weeklyTask");
-        }
-
-        // navigate("/mgsystem/dashboard");
+        setAuth({ token: token, user: userInfo });
+        let go =
+          response.data.data.result.role == "مدير"
+            ? "dailyTaskSend"
+            : response.data.data.result.role == "مكتب فني"
+            ? "weeklyTask"
+            : "dailyTask";
+        navigate(`/mgsystem/dashboard/${go}`);
       })
       .catch(function (error) {
         setLoad(false);

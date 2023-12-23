@@ -1,6 +1,6 @@
 const Filter = ({ inpDate, handleFilter, getAllTasks, setInpDate }) => {
   return (
-    <div className="mb-10 flex flex-wrap items-center gap-4">
+    <div className="mb-10 mr-5 flex flex-wrap items-center gap-4">
       <h3 className="font-bold">ابحث بالتاريخ</h3>
       <input
         value={inpDate}

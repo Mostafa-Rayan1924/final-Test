@@ -52,7 +52,7 @@ export default function App() {
                 </Route>
               </Route>
             </Route>
-            <Route path="*" element={<Error />} />
+            <Route path="/*" element={<Error />} />
           </Routes>
         </Theme.Provider>
       </AuthContextProvider>

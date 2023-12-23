@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Arrow from "../InAll/Arrow";
 import Navbar from "../InAll/Navbar";
@@ -18,7 +18,7 @@ import { Pagination } from "swiper/modules";
 const ProDetails = () => {
   let [pro, setPro] = useState({});
   let { proid } = useParams();
-
+  let nav = useNavigate();
   let getProById = () => {
     axios
       .get(`https://mg-company.cyclic.app/mg/project/${proid}`)
@@ -27,7 +27,7 @@ const ProDetails = () => {
         console.log(response.data.data.result);
       })
       .catch(function (error) {
-        console.log(error);
+        nav("/projects/asf/nice");
       });
   };
   const controller = new AbortController();

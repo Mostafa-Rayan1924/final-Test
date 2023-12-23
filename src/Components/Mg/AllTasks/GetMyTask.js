@@ -58,10 +58,7 @@ const GetMyTask = ({ makeDone, item, managerTasks }) => {
         {makeDone ? (
           <>
             <div className="flex justify-between flex-wrap mb-5">
-              <h3 className=" text-black text-2xl font-bold ">
-                {" "}
-                اكمل المهمة :
-              </h3>
+              <h3 className=" text-black text-2xl font-bold ">اكمل المهمة :</h3>
               <button
                 disabled={doneClick ? true : false}
                 className={
