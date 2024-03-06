@@ -2,7 +2,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "homepage": "http://Mostafa-Rayan1924.github.io/final-Test",
     "@formspree/react": "^2.5.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
