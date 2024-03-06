@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { authContext } from "../../contexts/Auth";
 import { NavLink } from "react-router-dom";
-
+import chat from "../../img/Mg/Group.png";
 const ShowElementsforLargeScreen = () => {
   let { auth, setAuth } = useContext(authContext);
   function navActive({ isActive }) {
@@ -47,6 +47,13 @@ const ShowElementsforLargeScreen = () => {
             <span className="hidden md:flex md:text-[18px] lg:text-base">
               الطلبات
             </span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex  gap-2 mt-5"}>
+            <img src={chat} className="my" />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -160,9 +167,15 @@ const ShowElementsforLargeScreen = () => {
               />
             </svg>
             <span className="hidden md:flex md:text-[18px] lg:text-base">
-              {" "}
               جميع الطلبات
             </span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex  gap-2 mt-5"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -253,6 +266,13 @@ const ShowElementsforLargeScreen = () => {
               الطلبات
             </span>
           </NavLink>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex  gap-2 mt-5"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+          </NavLink>
         </ul>
       ) : (
         ""
@@ -338,6 +358,13 @@ const ShowElementsforLargeScreen = () => {
             <span className="hidden md:flex md:text-[18px] lg:text-base">
               الطلبات
             </span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex  gap-2 mt-5"}>
+            <img src={chat} className="my" />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (

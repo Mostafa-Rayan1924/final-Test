@@ -45,7 +45,7 @@ const TopBar = () => {
         </div>
         <div>
           <div
-            className={`transition-all duration-300 fixed top-0 ${
+            className={`transition-all duration-300 z-30 fixed top-0 ${
               side ? "left-0" : "left-[-100%]"
             } flex items-center justify-center flex-col  w-[100%] h-screen bg-black/90`}>
             <span className="text-center cursor-pointer   text-2xl leading-10 w-10 h-10 bg-[#ffd53e] text-white rounded-full absolute top-10 right-6">

@@ -1,39 +1,103 @@
 import { Link } from "react-router-dom";
 import logo from "../../img/assets/logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Loader from "../InAll/Loader/Loader";
+import Workers from "./Workers";
+import Eltawredat from "./Eltawredat";
+import Equipments from "./Equipments";
 const TaskSend = ({ title, apiUrl }) => {
   let [load, setLoad] = useState(false);
-  let [WeeklyInputs, setWeeklyInputs] = useState({
-    projectName: "",
-    WorkersAndNum: "",
-    equipmentsAndNum: "",
-    eltawredat: "",
-    fileImg: "",
+  // to get all projects
+  let [proName, setProName] = useState("");
+  let [projects, setProjects] = useState([]);
+  // to get all   workers
+  let [workers, setWorkers] = useState([
+    {
+      iddd: 1,
+      type: "",
+      number: "",
+      workDid: "",
+    },
+  ]);
+  // to get all   tawredat
+  let [tawredat, setTawerdat] = useState([
+    {
+      iddd: 1,
+      name: "",
+      type: "",
+      number: 0,
+      carNumber: "",
+      supplies: "",
+    },
+  ]);
+  // to get all   tawredat
+  let [equipments, setEquipments] = useState([
+    {
+      iddd: 1,
+      name: "",
+      type: "",
+      amount: "",
+      namedDriver: "",
+      workDid: "",
+    },
+  ]);
+
+  // الاعمال التي تم انجازها وتسلمها
+  let [okAndDone, setOkAndDone] = useState("");
+  // الاعمال التي تم انجازها
+  let [ok, setOk] = useState("");
+  // المعوقات
+  let [Iobstacles, setIObstacles] = useState("");
+  let [Eobstacles, setEObstacles] = useState("");
+  // reqiurments
+  let [reqiurments, setReqiurments] = useState("");
+  //  file
+  let [file, setFile] = useState("");
+  // maping boxes which have select box and + elements
+  let workersMap = workers.map((item) => {
+    return <Workers item={item} workers={workers} setWorkers={setWorkers} />;
   });
+  let tawredatMap = tawredat.map((item) => {
+    return (
+      <Eltawredat item={item} tawredat={tawredat} setTawerdat={setTawerdat} />
+    );
+  });
+  let equipmentsMap = equipments.map((item) => {
+    return (
+      <Equipments
+        item={item}
+        equipments={equipments}
+        setEquipments={setEquipments}
+      />
+    );
+  });
+
   let handleSubmit = (e) => {
     setLoad(true);
     e.preventDefault();
     let formdata = new FormData();
-    formdata.append("ProjectName", WeeklyInputs.projectName);
-    formdata.append("Employee", WeeklyInputs.WorkersAndNum);
-    formdata.append("Equipments", WeeklyInputs.equipmentsAndNum);
-    formdata.append("Supplies", WeeklyInputs.eltawredat);
-    formdata.append("file", WeeklyInputs.fileImg);
+    formdata.append("ProjectName", proName);
+    formdata.append("Equipments", JSON.stringify(equipments));
+    formdata.append("Supplies", JSON.stringify(tawredat));
+    formdata.append("Employee", JSON.stringify(workers));
+    formdata.append("WorkCompleted", ok);
+    formdata.append("WorkDelivered", okAndDone);
+    formdata.append("InternalObstacles", Iobstacles);
+    formdata.append("ExternalObstacles", Eobstacles);
+    formdata.append("Requirements", reqiurments);
+    formdata.append("file", file);
+
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .post(
-        `https://nutty-yoke-fish.cyclic.app/mg/reports/${apiUrl}`,
-        formdata,
-        {
-          headers: headers,
-        }
-      )
+      .post(`https://mg-company.cyclic.app/mg/reports/${apiUrl}`, formdata, {
+        headers: headers,
+      })
       .then((res) => {
+        console.log(res.data);
         setLoad(false);
 
         Swal.fire({
@@ -41,7 +105,6 @@ const TaskSend = ({ title, apiUrl }) => {
           title: "OKay...",
           text: "Your Report Send Succesfully",
         });
-        console.log(res.data);
       })
       .catch((error) => {
         setLoad(false);
@@ -51,7 +114,31 @@ const TaskSend = ({ title, apiUrl }) => {
           text: error.response?.data?.message,
         });
       });
+    setProName("");
+    // setProjects("");
+    setOkAndDone("");
+    setOk("");
+    setIObstacles("");
+    setReqiurments("");
+    setFile("");
   };
+  // get names of project
+  useEffect(() => {
+    let headers = {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    axios
+      .get(`https://nutty-yoke-fish.cyclic.app/mg/project/`, {
+        headers: headers,
+      })
+      .then((res) => {
+        setProjects(res.data.data.result);
+      })
+      .catch((error) => {
+        console.log(error.response?.data?.message);
+      });
+  }, []);
+
   return (
     <>
       {load && <Loader />}
@@ -66,81 +153,113 @@ const TaskSend = ({ title, apiUrl }) => {
           onSubmit={handleSubmit}
           className="my-10 flex flex-col justify-center items-center w-[95%]  md:w-[80%]">
           {/* اسم المشروع */}
-          <div className="flex  flex-col md:flex-row gap-3 md:items-center justify-between mb-10 pr-5 w-full">
+
+          <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2">اسم المشروع</label>
-            <input
-              value={WeeklyInputs.projectName}
+            <select
+              value={proName}
               onChange={(e) => {
-                setWeeklyInputs({
-                  ...WeeklyInputs,
-                  projectName: e.target.value,
-                });
+                setProName(e.target.value);
               }}
               className="w-full lg:w-1/2  h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400"
               type="text"
-              placeholder="اسم المشروع"
-            />
+              placeholder="اسم المشروع">
+              <option className="hidden">اختر المشروع</option>
+              {projects.map((item) => {
+                return (
+                  <>
+                    <option key={item.projectName}>{item.projectName}</option>
+                  </>
+                );
+              })}
+            </select>
           </div>
-          {/* العمال وعددهم */}
-          <div className="flex flex-col md:flex-row gap-3 md:items-center justify-between mb-10 pr-5 w-full">
-            <label className="w-full lg:w-1/2">العمال وعددهم</label>
-            <input
-              value={WeeklyInputs.WorkersAndNum}
-              onChange={(e) => {
-                setWeeklyInputs({
-                  ...WeeklyInputs,
-                  WorkersAndNum: e.target.value,
-                });
-              }}
-              className=" w-full lg:w-1/2  h-[113px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
-              type=""
-              placeholder="العمال وعددهم"
-            />
-          </div>
-          {/* المعدات */}
-          <div className="flex flex-col md:flex-row gap-3 md:items-center justify-between mb-10 pr-5 w-full">
-            <label className="w-full lg:w-1/2"> نوع المعدات وعددها</label>
-            <input
-              value={WeeklyInputs.equipmentsAndNum}
-              onChange={(e) => {
-                setWeeklyInputs({
-                  ...WeeklyInputs,
-                  equipmentsAndNum: e.target.value,
-                });
-              }}
-              className=" w-full lg:w-1/2  h-[113px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
-              type="text"
-              placeholder="نوع المعدات وعددها"
-            />
-          </div>
+          {/*  ألعمال */}
+          <div className="relative w-full">{workersMap}</div>
           {/* التوريدات */}
-          <div className="flex flex-col md:flex-row gap-3 md:items-center justify-between mb-10 pr-5 w-full">
-            <label className="w-full lg:w-1/2"> التوريدات</label>
+          {tawredatMap}
+          {/* المعدات */}
+          {equipmentsMap}
+          {/* الاعمال اللي تم انجازها وتسليمها */}
+          <div className="flex-col flex  mb-10  w-full">
+            <label className="w-full mb-5">
+              الاعمال التي تم انجازها وتسلمها
+            </label>
             <input
-              value={WeeklyInputs.eltawredat}
+              value={okAndDone}
               onChange={(e) => {
-                setWeeklyInputs({
-                  ...WeeklyInputs,
-                  eltawredat: e.target.value,
-                });
+                setOkAndDone(e.target.value);
               }}
-              className="w-full lg:w-1/2  h-[113px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+              className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
               type="text"
-              placeholder="التوريدات"
+              placeholder="الاعمال التي تم انجازها وتسلمها"
+            />
+          </div>
+          {/* الاعمال اللي تم انجازها  */}
+          <div className="flex-col flex  mb-10  w-full">
+            <label className="w-full mb-5">الاعمال التي تم انجازها</label>
+            <input
+              value={ok}
+              onChange={(e) => {
+                setOk(e.target.value);
+              }}
+              className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+              type="text"
+              placeholder="الاعمال التي تم انجازها "
+            />
+          </div>
+          {/*   المعوقات الداخلية  */}
+          <div className="flex-col flex  mb-10  w-full">
+            <label className="w-full mb-5">
+              المعوقات الداخلية (داخل الشركة)
+            </label>
+            <input
+              value={Iobstacles}
+              onChange={(e) => {
+                setIObstacles(e.target.value);
+              }}
+              className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+              type="text"
+              placeholder="المعوقات الداخلية "
+            />
+          </div>
+          {/*   المعوقات الخارجية  */}
+          <div className="flex-col flex  mb-10  w-full">
+            <label className="w-full mb-5">
+              المعوقات الخارجية (خارج الشركة)
+            </label>
+            <input
+              value={Eobstacles}
+              onChange={(e) => {
+                setEObstacles(e.target.value);
+              }}
+              className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+              type="text"
+              placeholder=" المعوقات الخارجية "
+            />
+          </div>
+          {/*   المتطلبات   */}
+          <div className="flex-col flex  mb-10  w-full">
+            <label className="w-full mb-5">المتطلبات</label>
+            <input
+              value={reqiurments}
+              onChange={(e) => {
+                setReqiurments(e.target.value);
+              }}
+              className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+              type="text"
+              placeholder="المتطلبات"
             />
           </div>
           {/* ارفق ملف */}
-          <div className="flex gap-3 md:items-center justify-between mb-10 pr-5 w-full">
+          <div className="flex gap-3 md:items-center justify-between mb-10  w-full">
             <label className="hidden md:w-1/2 md:flex">ارفق ملف</label>
             <label
               className="w-full md:w-1/2  flex-col md:flex-row cursor-pointer flex items-center justify-center  h-[49px] px-[101.50px] py-2.5 bg-sky-500 rounded-[11px] text-white"
               htmlFor="fileUpload">
               <input
                 onChange={(e) => {
-                  setWeeklyInputs({
-                    ...WeeklyInputs,
-                    fileImg: e.target.files[0],
-                  });
+                  setFile(e.target.files[0]);
                 }}
                 type="file"
                 className="hidden"

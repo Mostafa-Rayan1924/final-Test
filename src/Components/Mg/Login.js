@@ -27,7 +27,7 @@ const Login = () => {
       password: formInputs.password,
     };
     await axios
-      .post("https://nutty-yoke-fish.cyclic.app/mg/users/login", params)
+      .post("https://mg-company.cyclic.app/mg/users/login", params)
       .then(function (response) {
         setLoad(false);
         // alert for success

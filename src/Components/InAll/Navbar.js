@@ -2,6 +2,7 @@ import logo from "../../img/assets/logo.svg";
 import menu from "../../img/assets/bars.svg";
 import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
+import "../../index.css";
 import { Theme } from "../../contexts/themeContext";
 const Navbar = () => {
   let { themes, setThemes } = useContext(Theme);
@@ -85,7 +86,7 @@ const Navbar = () => {
         </ul>
         <div
           onClick={handleOpen}
-          className="sm:hidden relative cursor-pointer  ">
+          className="sm:hidden relative  cursor-pointer  ">
           {themes ? (
             <svg
               onClick={() => setNav(true)}
@@ -104,9 +105,9 @@ const Navbar = () => {
           )}
 
           <ul
-            className={`fixed z-50 transition-all duration-300 ${
+            className={`transition-all   duration-300 bg-black/90 text-white top-0 left-0 fixed z-50  w-full h-screen grid place-content-center gap-10 text-center  ${
               nav ? "translate-x-[0]" : "translate-x-[-100%]"
-            } bg-black/90 text-white top-0 left-0 w-full h-screen grid place-content-center gap-10 text-center `}>
+            } `}>
             <span className="text-2xl absolute top-11 right-6 text-center leading-10 transition-all duration-300 cursor-pointer  hover:bg-red-500 text-white bg-yellow-400 w-10 h-10 rounded-full">
               X
             </span>

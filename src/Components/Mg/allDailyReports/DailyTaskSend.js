@@ -6,8 +6,10 @@ const DailyTaskSend = () => {
     <>
       <TasksWhichSend
         apiUrl={"getReportDaily"}
-        filterTask={"dailyDay"}
+        filterTask={"getReportDailyByDay"}
         title={"الموقف التنفيذي المرسل"}
+        apiFilterByName={"getReportdailyByUser"}
+        showFilterByName={true}
       />
     </>
   );

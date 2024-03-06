@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { authContext } from "../../contexts/Auth";
 import { NavLink } from "react-router-dom";
 import Error from "../InAll/Error";
-
+import chat from "../../img/Mg/Group.png";
 const ShowElements = () => {
   let { auth, setAuth } = useContext(authContext);
   function navActive({ isActive }) {
@@ -16,7 +16,7 @@ const ShowElements = () => {
       {/*  عرض علي حسب الفئة */}
       {/* list of eng and moshref */}
       {auth.user?.role == "مهندس مدني" || auth.user?.role == "مشرف" ? (
-        <ul>
+        <ul className="relative z-50">
           <NavLink style={navActive} to={"dailyTask"} className={"flex  gap-2"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +44,10 @@ const ShowElements = () => {
               />
             </svg>
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
+            <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+              <img src={chat} />
+              <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+            </NavLink>
           </NavLink>
         </ul>
       ) : (
@@ -138,7 +142,7 @@ const ShowElements = () => {
           <NavLink
             style={navActive}
             to={"allTasks"}
-            className={"flex gap-2 mt-5"}>
+            className={"flex gap-2 my-5"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -155,6 +159,10 @@ const ShowElements = () => {
               />
             </svg>
             <span className="  md:text-[18px] lg:text-base">جميع الطلبات</span>
+          </NavLink>
+          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -243,6 +251,10 @@ const ShowElements = () => {
             </svg>
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
           </NavLink>
+          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+          </NavLink>
         </ul>
       ) : (
         ""
@@ -324,6 +336,10 @@ const ShowElements = () => {
               />
             </svg>
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
+          </NavLink>
+          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (

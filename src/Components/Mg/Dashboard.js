@@ -11,7 +11,7 @@ const Dashboard = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="flex-1 lg:mr-[230px]">
+        <div className="flex-1 lg:mr-[20%]">
           <Outlet />
         </div>
       </div>

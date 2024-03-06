@@ -39,11 +39,7 @@ const Sidebar = () => {
         <h2 className="text-white mt-3 mb-1 font-bold">
           مرحبا : {auth.user?.name}
         </h2>
-        <p className="text-gray-600">{auth.user?.role}</p>
-
-        <h3 className="text-stone-500 my-5 hidden md:block">
-          {auth.user?.email}
-        </h3>
+        <p className="text-gray-600">( {auth.user?.role} )</p>
         <h3 className="text-white  hidden lg:flex  font-bold my-5">
           القائمه الرئيسية
         </h3>

@@ -1,13 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/InAll/Navbar";
 import Home from "./Pages/Home";
 import Services from "./Pages/Services";
 import Projects from "./Pages/Projects";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
-// import Footer from "./Components/InAll/Footer";
-// import Arrow from "./Components/InAll/Arrow";
-// import Mode from "./Components/InAll/Mode";
 import Error from "./Components/InAll/Error";
 import { Theme } from "./contexts/themeContext";
 import { useState } from "react";
@@ -23,39 +19,50 @@ import WeeklyTaskSend from "./Components/Mg/allWeeklyReports/WeeklyTaskSend";
 import TasksToMake from "./Components/Mg/AllTasks/TasksToMake";
 import TasksToSend from "./Components/Mg/AllTasks/TasksToSend";
 import AllTasks from "./Components/Mg/AllTasks/AllTask";
+import Chats from "./Components/Mg/Chats";
+import { ChatContextProvider } from "./contexts/CurrentClickChat";
+import { ChatConvIdProvider } from "./contexts/ConversationId";
 
 export default function App() {
   let [themes, setThemes] = useState(false);
   return (
     <>
-      <AuthContextProvider>
-        <Theme.Provider value={{ themes, setThemes }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:proid" element={<ProDetails />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* route for system */}
-            <Route path="/mgsystem">
-              <Route path="login" element={<Login />} />
-              <Route element={<RequireAuth />}>
-                <Route path="dashboard" element={<Dashboard />}>
-                  <Route path="dailyTask" element={<DailyTask />} />
-                  <Route path="dailyTaskSend" element={<DailyTaskSend />} />
-                  <Route path="weeklyTask" element={<WeeklyTask />} />
-                  <Route path="weeklyTaskSend" element={<WeeklyTaskSend />} />
-                  <Route path="tasks" element={<TasksToMake />} />
-                  <Route path="sendTasks" element={<TasksToSend />} />
-                  <Route path="allTasks" element={<AllTasks />} />
+      <ChatConvIdProvider>
+        <ChatContextProvider>
+          <AuthContextProvider>
+            <Theme.Provider value={{ themes, setThemes }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:proid" element={<ProDetails />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* route for system */}
+                <Route path="/mgsystem">
+                  <Route path="login" element={<Login />} />
+                  <Route element={<RequireAuth />}>
+                    <Route path="dashboard" element={<Dashboard />}>
+                      <Route path="dailyTask" element={<DailyTask />} />
+                      <Route path="dailyTaskSend" element={<DailyTaskSend />} />
+                      <Route path="weeklyTask" element={<WeeklyTask />} />
+                      <Route
+                        path="weeklyTaskSend"
+                        element={<WeeklyTaskSend />}
+                      />
+                      <Route path="tasks" element={<TasksToMake />} />
+                      <Route path="sendTasks" element={<TasksToSend />} />
+                      <Route path="allTasks" element={<AllTasks />} />
+                      <Route path="chats" element={<Chats />} />
+                    </Route>
+                  </Route>
                 </Route>
-              </Route>
-            </Route>
-            <Route path="/*" element={<Error />} />
-          </Routes>
-        </Theme.Provider>
-      </AuthContextProvider>
+                <Route path="/*" element={<Error />} />
+              </Routes>
+            </Theme.Provider>
+          </AuthContextProvider>
+        </ChatContextProvider>
+      </ChatConvIdProvider>
     </>
   );
 }

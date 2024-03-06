@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  font-family: "Cairo", sans-serif;
+  scroll-behavior: smooth;
+}
 body {
-  font-family: "Tajawal", sans-serif;
   background: #fff;
   direction: rtl;
   overflow-x: hidden;
@@ -77,4 +80,42 @@ html {
 }
 .head ul li a:hover:not(.active) {
   color: #f5c000;
+}
+/* .phoneIndex {
+  background-color: red !important;
+} */
+.phoneNavIndex {
+  background-color: #f5c000 !important;
+}
+
+.own {
+  align-items: flex-end;
+}
+.own .MsgText {
+  background-color: rgb(229, 231, 235);
+  color: black;
+}
+@media (min-width: 991px) {
+  .RightSec {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .leftSec {
+    width: 70%;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .backInPhone {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .RightSec {
+    width: 100% !important;
+  }
+}
+@media (max-width: 360px) {
+  .MsgText {
+    width: 230px !important;
+  }
 }

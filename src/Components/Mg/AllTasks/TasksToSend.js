@@ -16,16 +16,16 @@ const TasksToSend = ({ makeDone = false }) => {
 
   // get data to fill on selcet box of nameds
   function handleData(e) {
-    let params = {
-      userRole: e.target.value,
-    };
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .post("https://nutty-yoke-fish.cyclic.app/mg/task/findRole", params, {
-        headers: headers,
-      })
+      .get(
+        `https://mg-company.cyclic.app/mg/task/findRole?userRole=${e.target.value}`,
+        {
+          headers: headers,
+        }
+      )
       .then((res) => {
         setDataName(res.data.Data);
       })
