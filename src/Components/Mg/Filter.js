@@ -8,7 +8,7 @@ const Filter = ({ inpDate, handleFilter, getAllTasks, setInpDate }) => {
           setInpDate(e.target.value);
         }}
         onInput={handleFilter}
-        className="border-2 border-[#ffd53e] w-full sm:w-fit px-10 py-2 rounded-xl focus:outline-none"
+        className="border-2 border-[#ffd53e] w-full sm:w-fit px-10 py-[6px] rounded-xl focus:outline-none"
         type="date"
       />
       <button

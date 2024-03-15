@@ -106,7 +106,7 @@ const TasksWhichSend = ({
                 onChange={(e) => {
                   setSelectNameToFilter(e.target.value);
                 }}
-                className="border-2 border-[#ffd53e] w-full sm:w-fit px-10 py-2 rounded-xl focus:outline-none">
+                className="border-2 border-[#ffd53e] w-full sm:w-fit px-10 py-1 rounded-xl focus:outline-none">
                 {namesByRole.map((item) => {
                   return (
                     <>

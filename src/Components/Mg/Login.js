@@ -13,7 +13,7 @@ const Login = () => {
   let navigate = useNavigate();
   let { auth, setAuth } = useContext(authContext);
   let [formInputs, setFormInputs] = useState({
-    name: "",
+    name: "ElsayedAhmed@gmail.com",
     password: "test1234",
   });
   // send login
@@ -27,7 +27,7 @@ const Login = () => {
       password: formInputs.password,
     };
     await axios
-      .post("https://mg-company.cyclic.app/mg/users/login", params)
+      .post("https://mg-company.onrender.com/mg/users/login", params)
       .then(function (response) {
         setLoad(false);
         // alert for success
@@ -70,7 +70,7 @@ const Login = () => {
               <Link to={"/"}>
                 <img className="w-[104px] h-[104px] " src={logo} />
               </Link>
-              <div className="flex justify-center flex-col items-center mt-[20px]">
+              <div className="flex justify-center flex-col items-center mt-[20px] sm:mt-0">
                 <h2 className="text-[40px] lg:text-[64px] mb-10 font-bold">
                   مرحبا بك <br />
                   في شركة <span className="text-yellow-400">MG</span>
@@ -86,7 +86,7 @@ const Login = () => {
                       }}
                       placeholder=" الايميل"
                       type="text"
-                      className="w-[360px] focus:outline-[#f5c000] pr-2 h-[38px] mt-2 border border-[#ccc] rounded-lg"
+                      className="w-full sm:w-[360px] focus:outline-[#f5c000] pr-2 h-[38px] mt-2 border border-[#ccc] rounded-lg"
                     />
                   </div>
                   <div className="mt-5 mb-10">
@@ -102,10 +102,10 @@ const Login = () => {
                       }}
                       placeholder=" كلمة المرور "
                       type="text"
-                      className="w-[360px] focus:outline-[#f5c000] pr-2 h-[38px] mt-2 border border-[#ccc] rounded-lg"
+                      className="w-full sm:w-[360px] focus:outline-[#f5c000] pr-2 h-[38px] mt-2 border border-[#ccc] rounded-lg"
                     />
                   </div>
-                  <button className="w-[360px] transition-all duration-300 hover:bg-yellow-500 h-[49px] px-[101.50px] text-center text-white text-2xl font-bold py-2.5 bg-yellow-400 rounded-[11px] justify-center items-center">
+                  <button className="sm:w-[360px] transition-all duration-300 hover:bg-yellow-500 h-[49px] px-[101.50px] text-center text-white text-2xl font-bold py-2.5 bg-yellow-400 rounded-[11px] justify-center items-center">
                     تسجيل الدخول
                   </button>
                 </form>

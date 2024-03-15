@@ -13,7 +13,7 @@ const RightChat = () => {
     };
     try {
       const response = await axios.get(
-        "https://mg-company.cyclic.app/mg/users/getUser",
+        "https://mg-company.onrender.com/mg/users/getUser",
         {
           headers: headers,
         }
@@ -37,9 +37,12 @@ const RightChat = () => {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       };
       axios
-        .get(`https://mg-company.cyclic.app/mg/users/getOneUser?name=${word}`, {
-          headers: headers,
-        })
+        .get(
+          `https://mg-company.onrender.com/mg/users/getOneUser?name=${word}`,
+          {
+            headers: headers,
+          }
+        )
         .then((res) => {
           setUsers(res.data.Data);
         })

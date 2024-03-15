@@ -2,8 +2,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "homepage": "http://Mostafa-Rayan1924.github.io/final-Test",
     "@formspree/react": "^2.5.1",
+    "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,6 +14,8 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4",
     "sweetalert2": "^11.7.32",
     "sweetalert2-react-content": "^5.0.7",
     "swiper": "^10.3.1",

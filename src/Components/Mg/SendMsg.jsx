@@ -17,7 +17,7 @@ const SendMsg = () => {
     if (send !== "") {
       axios
         .post(
-          `https://mg-company.cyclic.app/mg/chat/message/${convId}`,
+          `https://mg-company.onrender.com/mg/chat/message/${convId}`,
           params,
           {
             headers: headers,
@@ -33,22 +33,24 @@ const SendMsg = () => {
     }
   };
   return (
-    <form
-      onSubmit={handleSendMsg}
-      className="flex justify-between border-t-2 pt-4 mt-auto   items-center gap-3">
-      <button>
-        <img className="cursor-pointer" src={sendBtn} alt="" />
-      </button>
-      <input
-        value={send}
-        onChange={(e) => {
-          setSend(e.target.value);
-        }}
-        type="text"
-        placeholder="اكتب رسالتك ..."
-        className="w-[100%]  bg-[#e7e7e7] rounded-lg h-[40px] outline-none pr-4"
-      />
-    </form>
+    <>
+      <form
+        onSubmit={handleSendMsg}
+        className="flex justify-between border-t-2 pt-4 mt-auto   items-center gap-3">
+        <button>
+          <img className="cursor-pointer" src={sendBtn} alt="" />
+        </button>
+        <input
+          value={send}
+          onChange={(e) => {
+            setSend(e.target.value);
+          }}
+          type="text"
+          placeholder="اكتب رسالتك ..."
+          className="w-[100%]  bg-[#e7e7e7] rounded-lg h-[40px] outline-none pr-4"
+        />
+      </form>
+    </>
   );
 };
 

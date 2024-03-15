@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const Message = ({ own, item }) => {
+  const maxLength = 200;
+  const [expanded, setExpanded] = useState(false);
   function getMessageTimestamp(messageTimestamp) {
     var currentTime = new Date();
     var messageTime = new Date(messageTimestamp);
@@ -29,17 +33,37 @@ const Message = ({ own, item }) => {
       return messageTime.toLocaleDateString();
     }
   }
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
   var messageTimestamp = item.createdAt;
   var formattedTimestamp = getMessageTimestamp(messageTimestamp);
-
   return (
     <div
-      className={`Message    ${
-        own ? "own" : "items-start"
-      }  flex flex-col my-5 `}>
+      className={`Message    ${own ? "own" : "items-start"}  flex flex-col  `}>
       <div className="messageTop">
         <p className="p-2.5 bg-yellow-400 text-white rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
-          {item.text}
+          {item.text.length > maxLength && !expanded ? (
+            <>
+              <p>{item.text?.slice(0, maxLength)}...</p>
+              <button
+                className="text-sky-500 font-bold "
+                onClick={toggleExpanded}>
+                ...Read More
+              </button>
+            </>
+          ) : (
+            <>
+              <p>{item.text}</p>
+              {item.text?.length > maxLength && (
+                <button
+                  className="text-sky-500 font-bold"
+                  onClick={toggleExpanded}>
+                  ...Read Less
+                </button>
+              )}
+            </>
+          )}
         </p>
         <small className="text-[12px] text-gray-400 mt-2.5">
           {formattedTimestamp}
