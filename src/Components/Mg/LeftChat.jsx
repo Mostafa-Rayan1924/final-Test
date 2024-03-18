@@ -29,7 +29,7 @@ const LeftChat = () => {
   // connect to server io and get messages
   useEffect(() => {
     // https://mg-company.onrender.com
-    socket.current = io("");
+    socket.current = io("https://mg-company.onrender.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,

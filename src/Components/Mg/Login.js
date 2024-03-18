@@ -71,9 +71,13 @@ const Login = () => {
                 <img className="w-[104px] h-[104px] " src={logo} />
               </Link>
               <div className="flex justify-center flex-col items-center mt-[20px] sm:mt-0">
-                <h2 className="text-[40px] lg:text-[64px] mb-10 font-bold">
+                <h2 className="text-[40px] lg:text-[64px] mb-2 font-bold">
                   مرحبا بك <br />
                   في شركة <span className="text-yellow-400">MG</span>
+                </h2>{" "}
+                <h2 className="text-[20px]  mb-10 font-bold">
+                  <span className="text-red-500 font-bold"># </span>
+                  (خاص بالعاملين بالشركة)
                 </h2>
                 <form onSubmit={handleSubmit}>
                   <div>
