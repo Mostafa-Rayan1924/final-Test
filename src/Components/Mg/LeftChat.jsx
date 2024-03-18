@@ -38,7 +38,6 @@ const LeftChat = () => {
       });
     });
   }, []);
-  console.log(arrivalMessage);
 
   useEffect(() => {
     arrivalMessage &&
