@@ -12,7 +12,7 @@ const GetMyTask = ({ makeDone, item, managerTasks }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get(`https://mg-company.cyclic.app/mg/users/doneTask/${item.id}`, {
+      .get(`https://mg-company.onrender.com/mg/users/doneTask/${item.id}`, {
         headers: headers,
       })
       .then((res) => {

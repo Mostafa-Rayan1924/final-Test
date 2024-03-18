@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CurrentChatContext } from "../../contexts/CurrentClickChat";
 import axios from "axios";
 import { ConvIdChatContext } from "../../contexts/ConversationId";
@@ -22,7 +22,8 @@ const Person = ({ item }) => {
         headers: headers,
       })
       .then(function (response) {
-        setConvId(response.data.data._id);
+        // حط دي بقي عشان تجيب منها ال members اللي في اخر use useEffect
+        setConvId(response.data.data);
         setLoad(false);
       })
       .catch(function (error) {

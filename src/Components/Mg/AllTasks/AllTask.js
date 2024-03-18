@@ -21,7 +21,7 @@ const AllTask = ({ managerTasks }) => {
     };
     axios
       .get(
-        `https://mg-company.cyclic.app/mg/task/getTaskStatus?status=${status}`,
+        `https://mg-company.onrender.com/mg/task/getTaskStatus?status=${status}`,
         {
           headers: headers,
         }
@@ -42,7 +42,7 @@ const AllTask = ({ managerTasks }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get("https://mg-company.cyclic.app/mg/task/getTask", {
+      .get("https://mg-company.onrender.com/mg/task/getTask", {
         headers: headers,
       })
       .then((res) => {

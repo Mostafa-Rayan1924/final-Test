@@ -57,11 +57,23 @@ const TaskSend = ({ title, apiUrl }) => {
   let [file, setFile] = useState("");
   // maping boxes which have select box and + elements
   let workersMap = workers.map((item) => {
-    return <Workers item={item} workers={workers} setWorkers={setWorkers} />;
+    return (
+      <Workers
+        key={item.id}
+        item={item}
+        workers={workers}
+        setWorkers={setWorkers}
+      />
+    );
   });
   let tawredatMap = tawredat.map((item) => {
     return (
-      <Eltawredat item={item} tawredat={tawredat} setTawerdat={setTawerdat} />
+      <Eltawredat
+        key={item.id}
+        item={item}
+        tawredat={tawredat}
+        setTawerdat={setTawerdat}
+      />
     );
   });
   let equipmentsMap = equipments.map((item) => {
@@ -93,7 +105,7 @@ const TaskSend = ({ title, apiUrl }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .post(`https://mg-company.cyclic.app/mg/reports/${apiUrl}`, formdata, {
+      .post(`https://mg-company.onrender.com/mg/reports/${apiUrl}`, formdata, {
         headers: headers,
       })
       .then((res) => {
@@ -128,7 +140,7 @@ const TaskSend = ({ title, apiUrl }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get(`https://nutty-yoke-fish.cyclic.app/mg/project/`, {
+      .get(`https://mg-company.onrender.com/mg/project/`, {
         headers: headers,
       })
       .then((res) => {
@@ -168,7 +180,9 @@ const TaskSend = ({ title, apiUrl }) => {
               {projects.map((item) => {
                 return (
                   <>
-                    <option key={item.projectName}>{item.projectName}</option>
+                    <div key={item?.projectName}>
+                      <option>{item?.projectName}</option>
+                    </div>
                   </>
                 );
               })}

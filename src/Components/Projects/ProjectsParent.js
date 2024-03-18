@@ -10,7 +10,7 @@ const ProjectsParent = () => {
   const controller = new AbortController();
   function getAllPro() {
     axios
-      .get("https://mg-company.cyclic.app/mg/project/")
+      .get("https://mg-company.onrender.com/mg/project/")
       .then(function (response) {
         // console.log(response.data);
         setLoad(false);
@@ -36,7 +36,7 @@ const ProjectsParent = () => {
     setLoad(true);
     setActive(id);
     axios
-      .get(`https://mg-company.cyclic.app/mg/project/getProjectCat/${id}`)
+      .get(`https://mg-company.onrender.com/mg/project/getProjectCat/${id}`)
       .then(function (response) {
         console.log(response.data.data.result);
         setLoad(false);

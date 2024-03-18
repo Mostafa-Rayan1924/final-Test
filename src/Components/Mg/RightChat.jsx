@@ -7,26 +7,38 @@ import { authContext } from "../../contexts/Auth";
 const RightChat = () => {
   let { currentChat } = useContext(CurrentChatContext);
   let [users, setUsers] = useState([]);
-  const fetchUsers = async () => {
+  let { auth } = useContext(authContext);
+  const fetchUsers = () => {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
-    try {
-      const response = await axios.get(
-        "https://mg-company.onrender.com/mg/users/getUser",
-        {
-          headers: headers,
-        }
-      );
-      setUsers(response.data.Data);
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .get("https://mg-company.onrender.com/mg/users/getUser", {
+        headers: headers,
+      })
+      .then((res) => {
+        setUsers(res.data.Data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   };
   useEffect(() => {
-    fetchUsers();
+    let cancelTokenSource = null; // Variable to store the cancel token source
+
+    const fetchData = async () => {
+      cancelTokenSource = await fetchUsers(); // Call fetchUsers and store the cancel token source
+    };
+
+    fetchData();
+    // Cleanup function
+    return () => {
+      if (cancelTokenSource) {
+        cancelTokenSource.cancel("Component unmounted"); // Cancel the request when the component unmounts
+      }
+    };
   }, []);
-  let { auth } = useContext(authContext);
   let filterUsers = users.filter((item) => item._id !== auth.user._id);
   function Search(word) {
     // body params for SEND msg

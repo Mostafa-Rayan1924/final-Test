@@ -30,7 +30,7 @@ const TasksWhichSend = ({
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get(`https://mg-company.cyclic.app/mg/reports/${apiUrl}`, {
+      .get(`https://mg-company.onrender.com/mg/reports/${apiUrl}`, {
         headers: headers,
       })
       .then((res) => {
@@ -57,7 +57,7 @@ const TasksWhichSend = ({
     };
     axios
       .get(
-        `https://mg-company.cyclic.app/mg/reports/${apiFilterByName}?userName=${selectNameToFilter}`,
+        `https://mg-company.onrender.com/mg/reports/${apiFilterByName}?userName=${selectNameToFilter}`,
         {
           headers: headers,
         }
@@ -77,7 +77,7 @@ const TasksWhichSend = ({
     };
     axios
       .get(
-        `https://mg-company.cyclic.app/mg/reports/${filterTask}?date=${e.target.value}`,
+        `https://mg-company.onrender.com/mg/reports/${filterTask}?date=${e.target.value}`,
         {
           headers: headers,
         }
@@ -110,7 +110,9 @@ const TasksWhichSend = ({
                 {namesByRole.map((item) => {
                   return (
                     <>
-                      <option className="hidden">اختر الاسم</option>
+                      <option key={item} className="hidden">
+                        اختر الاسم
+                      </option>
                       <option>{item}</option>
                     </>
                   );

@@ -21,7 +21,7 @@ const ProDetails = () => {
   let nav = useNavigate();
   let getProById = () => {
     axios
-      .get(`https://mg-company.cyclic.app/mg/project/${proid}`)
+      .get(`https://mg-company.onrender.com/mg/project/${proid}`)
       .then(function (response) {
         setPro(response.data.data.result);
         console.log(response.data.data.result);

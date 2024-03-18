@@ -21,7 +21,7 @@ const TasksToSend = ({ makeDone = false }) => {
     };
     axios
       .get(
-        `https://mg-company.cyclic.app/mg/task/findRole?userRole=${e.target.value}`,
+        `https://mg-company.onrender.com/mg/task/findRole?userRole=${e.target.value}`,
         {
           headers: headers,
         }
@@ -45,7 +45,7 @@ const TasksToSend = ({ makeDone = false }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .post("https://nutty-yoke-fish.cyclic.app/mg/task/createTask", params, {
+      .post("https://mg-company.onrender.com/mg/task/createTask", params, {
         headers: headers,
       })
       .then((res) => {

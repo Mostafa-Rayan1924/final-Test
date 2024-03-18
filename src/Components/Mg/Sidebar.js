@@ -12,7 +12,7 @@ const Sidebar = () => {
     let confirmLogout = window.confirm("are you sure");
     if (confirmLogout) {
       axios
-        .get("https://nutty-yoke-fish.cyclic.app/mg/users/logout")
+        .get("https://mg-company.onrender.com/mg/users/logout")
         .then((res) => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");

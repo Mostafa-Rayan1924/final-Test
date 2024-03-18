@@ -36,16 +36,16 @@ const Message = ({ own, item }) => {
   const toggleExpanded = () => {
     setExpanded(!expanded);
   };
-  var messageTimestamp = item.createdAt;
+  var messageTimestamp = item?.createdAt;
   var formattedTimestamp = getMessageTimestamp(messageTimestamp);
   return (
     <div
       className={`Message    ${own ? "own" : "items-start"}  flex flex-col  `}>
       <div className="messageTop">
-        <p className="p-2.5 bg-yellow-400 text-white rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
-          {item.text.length > maxLength && !expanded ? (
+        <div className="p-2.5 bg-yellow-400 text-white rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
+          {item?.text?.length > maxLength && !expanded ? (
             <>
-              <p>{item.text?.slice(0, maxLength)}...</p>
+              <p>{item?.text?.slice(0, maxLength)}...</p>
               <button
                 className="text-sky-500 font-bold "
                 onClick={toggleExpanded}>
@@ -54,8 +54,8 @@ const Message = ({ own, item }) => {
             </>
           ) : (
             <>
-              <p>{item.text}</p>
-              {item.text?.length > maxLength && (
+              <p>{item?.text}</p>
+              {item?.text?.length > maxLength && (
                 <button
                   className="text-sky-500 font-bold"
                   onClick={toggleExpanded}>
@@ -64,7 +64,7 @@ const Message = ({ own, item }) => {
               )}
             </>
           )}
-        </p>
+        </div>
         <small className="text-[12px] text-gray-400 mt-2.5">
           {formattedTimestamp}
         </small>

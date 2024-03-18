@@ -17,7 +17,7 @@ const TasksToMake = ({ makeDone = true }) => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get("https://mg-company.cyclic.app/mg/users/myTask", {
+      .get("https://mg-company.onrender.com/mg/users/myTask", {
         headers: headers,
       })
       .then((res) => {
