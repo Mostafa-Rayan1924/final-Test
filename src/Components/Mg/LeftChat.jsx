@@ -62,7 +62,7 @@ const LeftChat = () => {
           console.log(error);
         });
     }
-  }, [convId, messages]);
+  }, [convId]);
   //  scroll to the end of the chat
   useEffect(() => {
     ScrollRef.current?.scrollIntoView({ behavior: "smooth" });

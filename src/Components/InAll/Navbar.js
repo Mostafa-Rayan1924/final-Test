@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import "../../index.css";
 import { Theme } from "../../contexts/themeContext";
+import { TbLogin2 } from "react-icons/tb";
+
 const Navbar = () => {
   let { themes, setThemes } = useContext(Theme);
   let [nav, setNav] = useState(false);
@@ -34,14 +36,6 @@ const Navbar = () => {
           />
         </Link>
         <ul className="hidden sm:flex items-center gap-[10px]">
-          <li>
-            <NavLink
-              to={"/mgsystem/login"}
-              style={navActive}
-              className={`py-[8px] px-[16px] transition-all duration-300 dark:text-white `}>
-              تسجيل الدخول
-            </NavLink>
-          </li>
           <li>
             <NavLink
               to={"/"}
@@ -89,6 +83,14 @@ const Navbar = () => {
                 "py-[8px] px-[16px] transition-all duration-300 dark:text-white"
               }>
               اتصل بنا
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/mgsystem/login"}
+              style={navActive}
+              className={`py-[8px] px-[16px] transition-all duration-300 flex items-center gap-1 dark:text-white `}>
+              <TbLogin2 /> تسجيل الدخول
             </NavLink>
           </li>
         </ul>
@@ -158,6 +160,14 @@ const Navbar = () => {
                 style={navActive}
                 className={"py-[8px] px-[16px] dark:text-white"}>
                 اتصل بنا
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/mgsystem/login"}
+                style={navActive}
+                className={`py-[8px] px-[16px] transition-all duration-300 flex items-center gap-1 dark:text-white `}>
+                <TbLogin2 /> تسجيل الدخول
               </NavLink>
             </li>
           </ul>
