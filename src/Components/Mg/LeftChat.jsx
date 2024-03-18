@@ -9,7 +9,7 @@ import { ConvIdChatContext } from "../../contexts/ConversationId";
 import { io } from "socket.io-client";
 const LeftChat = () => {
   let { currentChat } = useContext(CurrentChatContext);
-  let { convId } = useContext(ConvIdChatContext);
+  let { convId, setConvId } = useContext(ConvIdChatContext);
   let ScrollRef = useRef();
   let { auth } = useContext(authContext);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -20,7 +20,7 @@ const LeftChat = () => {
     return (
       <Message
         key={item?._id}
-        own={item?.sender == auth.user?._id}
+        own={item?.sender == auth.user._id}
         item={item}
       />
     );
@@ -28,7 +28,6 @@ const LeftChat = () => {
 
   // connect to server io and get messages
   useEffect(() => {
-    // https://mg-company.onrender.com
     socket.current = io("https://mg-company.onrender.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -38,12 +37,15 @@ const LeftChat = () => {
       });
     });
   }, []);
-
   useEffect(() => {
     arrivalMessage &&
-      convId?.members.includes(auth.user._id) &&
+      convId?.members?.includes(auth.user._id) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, convId]);
+  useEffect(() => {
+    socket.current.emit("addUser", auth?.user?._id);
+  }, [auth]);
+
   //  get messages
   useEffect(() => {
     if (currentChat !== "") {
@@ -67,9 +69,6 @@ const LeftChat = () => {
   useEffect(() => {
     ScrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  useEffect(() => {
-    socket.current?.emit("addUser", currentChat._id);
-  }, [currentChat._id]);
 
   //  send msg
   let handleSendMsg = (e) => {
@@ -93,7 +92,6 @@ const LeftChat = () => {
       axios
         .post(
           `https://mg-company.onrender.com/mg/chat/message/${convId._id}`,
-
           params,
           {
             headers: headers,

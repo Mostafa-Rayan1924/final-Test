@@ -19,7 +19,8 @@
     "sweetalert2": "^11.7.32",
     "sweetalert2-react-content": "^5.0.7",
     "swiper": "^10.3.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,5 +48,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.3"
-  }
+  },
+  "proxy": "https://mg-company.onrender.com"
 }
