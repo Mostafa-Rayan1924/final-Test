@@ -36,6 +36,14 @@ const Navbar = () => {
         <ul className="hidden sm:flex items-center gap-[10px]">
           <li>
             <NavLink
+              to={"/mgsystem/login"}
+              style={navActive}
+              className={`py-[8px] px-[16px] transition-all duration-300 dark:text-white `}>
+              تسجيل الدخول
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to={"/"}
               style={navActive}
               className={`py-[8px] px-[16px] transition-all duration-300 dark:text-white `}>
