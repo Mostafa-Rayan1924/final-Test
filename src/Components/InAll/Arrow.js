@@ -2,15 +2,15 @@ import { useEffect, useRef } from "react";
 import arrow from "../../img/assets/arrowup.jpg";
 const Arrow = () => {
   let arrowRef = useRef();
-  useEffect(() => {
-    window.onscroll = () => {
-      if (window.scrollY > 500) {
-        arrowRef.current.style.opacity = "1";
-      } else {
-        arrowRef.current.style.opacity = "0";
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.onscroll = () => {
+  //     if (window.scrollY > 500) {
+  //       arrowRef.current.style.opacity = "1";
+  //     } else {
+  //       arrowRef.current.style.opacity = "0";
+  //     }
+  //   };
+  // }, []);
   function goUp() {
     window.scrollTo({
       top: "0",

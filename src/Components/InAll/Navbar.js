@@ -35,7 +35,7 @@ const Navbar = () => {
             alt="logo Mg"
           />
         </Link>
-        <ul className="hidden sm:flex items-center gap-[10px]">
+        <ul className="hidden md:flex items-center gap-[10px]">
           <li>
             <NavLink
               to={"/"}
@@ -96,7 +96,7 @@ const Navbar = () => {
         </ul>
         <div
           onClick={handleOpen}
-          className="sm:hidden relative  cursor-pointer  ">
+          className="md:hidden relative  cursor-pointer  ">
           {themes ? (
             <svg
               onClick={() => setNav(true)}

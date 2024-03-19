@@ -98,8 +98,8 @@ const LeftChat = () => {
           }
         )
         .then((res) => {
-          setSend("");
           setMessages([...messages, res.data.data]);
+          setSend("");
         })
         .catch((e) => {
           console.log(e);
@@ -110,7 +110,7 @@ const LeftChat = () => {
     <div
       className={`${
         currentChat !== "" ? "flex-col" : "hidden lg:flex flex-col"
-      } relative sm:h-[450px] md:h-[550px] overflow-y-scroll gap-5    flex flex-col w-full leftSec p-5`}>
+      } relative sm:h-[450px] md:h-[550px] overflow-y-scroll gap-5  flex flex-col w-full leftSec p-5`}>
       {currentChat ? (
         <>
           {/* top chat */}

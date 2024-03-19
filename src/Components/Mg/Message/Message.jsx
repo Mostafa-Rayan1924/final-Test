@@ -39,10 +39,9 @@ const Message = ({ own, item }) => {
   var messageTimestamp = item?.createdAt;
   var formattedTimestamp = getMessageTimestamp(messageTimestamp);
   return (
-    <div
-      className={`Message    ${own ? "own" : "items-start"}  flex flex-col  `}>
+    <div className={`Message    ${own ? "own" : "items-end"}  flex flex-col  `}>
       <div className="messageTop">
-        <div className="p-2.5 bg-yellow-400 text-white rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
+        <div className="p-2.5 bg-yellow-400  text-white  rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
           {item?.text?.length > maxLength && !expanded ? (
             <>
               <p>{item?.text?.slice(0, maxLength)}...</p>

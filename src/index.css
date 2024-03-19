@@ -89,7 +89,7 @@ html {
 }
 
 .own {
-  align-items: flex-end;
+  align-items: flex-start;
 }
 .own .MsgText {
   background-color: rgb(229, 231, 235);
