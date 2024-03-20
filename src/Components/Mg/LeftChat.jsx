@@ -25,7 +25,25 @@ const LeftChat = () => {
       />
     );
   });
-
+  // function to delete all msg
+  let handleDeleteAll = () => {
+    let headers = {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    axios
+      .delete(
+        `https://mg-company.onrender.com/mg/chat/message/deleteallmsg/${convId._id}`,
+        {
+          headers: headers,
+        }
+      )
+      .then(function (res) {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   // connect to server io and get messages
   useEffect(() => {
     socket.current = io("https://mg-company.onrender.com");
@@ -114,7 +132,7 @@ const LeftChat = () => {
       {currentChat ? (
         <>
           {/* top chat */}
-          <PersonWhoChatWith />
+          <PersonWhoChatWith handleDeleteAllMsg={handleDeleteAll} />
 
           {/* conversations */}
           {messages.length == 0 ? (
