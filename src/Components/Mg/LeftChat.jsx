@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import Message from "./Message/Message";
 import PersonWhoChatWith from "./PersonWhoChatWith";
 import sendBtn from "../../img/Mg/Vector.png";
+import { FaAngleDoubleUp } from "react-icons/fa";
 import { MdDoNotDisturb } from "react-icons/md";
 import { CurrentChatContext } from "../../contexts/CurrentClickChat";
 import { IoIosNotifications } from "react-icons/io";
@@ -157,11 +158,16 @@ const LeftChat = () => {
       setopenNotificationsBar((prev) => !prev);
     }
   };
+  // up btn
+  let handleUp = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
-    <div
-      className={`${
-        currentChat !== "" ? "flex-col" : "hidden lg:flex flex-col"
-      } relative sm:h-[450px] md:h-[550px] overflow-y-scroll gap-5  flex flex-col w-full leftSec p-5`}>
+    <>
       <div
         onClick={openNotifications}
         className="fixed top-20 left-5 text-yellow-400 ">
@@ -191,56 +197,66 @@ const LeftChat = () => {
           ""
         )}
       </div>
-      {currentChat ? (
-        <>
-          {/* top chat */}
-          <PersonWhoChatWith handleDeleteAllMsg={handleDeleteAll} />
+      <div
+        className={`${
+          currentChat !== "" ? "flex-col" : "hidden lg:flex flex-col"
+        } relative sm:h-[450px] md:h-[550px] overflow-y-scroll gap-5  flex flex-col w-full leftSec p-5`}>
+        {currentChat ? (
+          <>
+            {/* top chat */}
+            <PersonWhoChatWith handleDeleteAllMsg={handleDeleteAll} />
 
-          {/* conversations */}
-          {messages.length == 0 ? (
-            <h2 className="absolute text-xl  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              لا يوجد رسائل ...
-            </h2>
-          ) : (
-            msgMap
-          )}
-          {/* area to send message */}
-          <div className="mt-auto relative" ref={ScrollRef}>
-            {/* <SendMsg /> */}
+            {/* conversations */}
+            {messages.length == 0 ? (
+              <h2 className="absolute text-xl  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                لا يوجد رسائل ...
+              </h2>
+            ) : (
+              msgMap
+            )}
+            {/* area to send message */}
+            <div className="mt-auto relative" ref={ScrollRef}>
+              {/* <SendMsg /> */}
 
-            <form
-              onSubmit={handleSendMsg}
-              className="flex justify-between border-t-2 pt-4 mt-auto   items-center gap-3">
-              <button>
-                {waitMsg ? (
-                  <MdDoNotDisturb
-                    className="pointer-events-none cursor-not-allowed"
-                    size={25}
-                  />
-                ) : send == "" || send == null ? (
-                  ""
-                ) : (
-                  <img className="cursor-pointer" src={sendBtn} alt="" />
-                )}
-              </button>
-              <input
-                value={send}
-                onChange={(e) => {
-                  setSend(e.target.value);
-                }}
-                type="text"
-                placeholder="اكتب رسالتك ..."
-                className="w-[100%]  bg-[#e7e7e7] rounded-lg h-[40px] outline-none pr-4"
-              />
-            </form>
-          </div>
-        </>
-      ) : (
-        <span className="absolute top-[30%] text-6xl  text-center text-gray-400">
-          اختر محادثة لبدأ الشات ...
-        </span>
-      )}
-    </div>
+              <form
+                onSubmit={handleSendMsg}
+                className="flex justify-between border-t-2 pt-4 mt-auto   items-center gap-3">
+                <button>
+                  {waitMsg ? (
+                    <MdDoNotDisturb
+                      className="pointer-events-none cursor-not-allowed"
+                      size={25}
+                    />
+                  ) : send == "" || send == null ? (
+                    ""
+                  ) : (
+                    <img className="cursor-pointer" src={sendBtn} alt="" />
+                  )}
+                </button>
+                <input
+                  value={send}
+                  onChange={(e) => {
+                    setSend(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="اكتب رسالتك ..."
+                  className="w-[100%]  bg-[#e7e7e7] rounded-lg h-[40px] outline-none pr-4"
+                />
+                <span
+                  onClick={handleUp}
+                  className=" bg-green-500 block lg:hidden cursor-pointer grid place-items-center text-white w-8 h-8 rounded">
+                  <FaAngleDoubleUp />
+                </span>
+              </form>
+            </div>
+          </>
+        ) : (
+          <span className="absolute top-[30%] text-6xl  text-center text-gray-400">
+            اختر محادثة لبدأ الشات ...
+          </span>
+        )}
+      </div>
+    </>
   );
 };
 
