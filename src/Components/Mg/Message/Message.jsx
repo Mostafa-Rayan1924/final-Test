@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
-const Message = ({ own, item }) => {
+const Message = ({ own, item, handlDelete }) => {
   const maxLength = 200;
-  const [expanded, setExpanded] = useState(false);
   let [showDel, setShowDel] = useState(false);
+
+  const [expanded, setExpanded] = useState(false);
   function getMessageTimestamp(messageTimestamp) {
     var currentTime = new Date();
     var messageTime = new Date(messageTimestamp);
@@ -42,38 +43,27 @@ const Message = ({ own, item }) => {
     setShowDel(true);
   };
   let handlDel = () => {
-    let headers = {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
-    };
-    // deleteallmsg
-    axios
-      .delete(
-        `https://mg-company.onrender.com/mg/chat/message/deletemsg/${item._id}`,
-        {
-          headers: headers,
-        }
-      )
-      .then(function (res) {
-        console.log(res);
-        setShowDel(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    handlDelete(item._id);
+    setShowDel(false);
   };
   var messageTimestamp = item?.createdAt;
   var formattedTimestamp = getMessageTimestamp(messageTimestamp);
   return (
-    <div className={`Message    ${own ? "own" : "items-end"}  flex flex-col  `}>
+    <div
+      className={`Message -z-10    ${
+        own ? "own" : "items-end"
+      }  flex flex-col  `}>
       <div className="messageTop">
         <div
           onContextMenu={handlShoweDel}
           className="p-2.5 relative bg-yellow-400  text-white   rounded-lg max-w-[300px] sm:max-w-[400px] break-words   mt-1 MsgText">
-          {showDel ? (
+          {showDel && own ? (
             <>
               <div
                 onClick={handlDel}
-                className="mb-1 w-[30px] absolute top-[-25px] right-[-25px] hover:bg-red-500 hover:text-white cursor-pointer transition-all duration-200 h-[30px] text-red-500 rounded-full border-2 border-red-500 flex items-center justify-center">
+                className={`mb-1 ${
+                  own ? "left-[-25px]" : "right-[-25px]"
+                } w-[30px] absolute top-[-25px]  hover:bg-red-500 hover:text-white cursor-pointer transition-all duration-200 h-[30px] text-red-500 rounded-full border-2 border-red-500 flex items-center justify-center`}>
                 <MdDelete />
               </div>
             </>

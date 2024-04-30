@@ -1,36 +1,40 @@
 const GetAllReports = ({ item }) => {
-  console.log(item.Supplies);
   return (
     <div className="shadow bg-slate-50 transition-all duration-300 border-[4px] border-transparent mb-10  hover:border-b-sky-400 p-6 rounded-lg">
-      <div className="flex flex-wrap justify-between gap-4 items-center border-b pb-2 mb-5">
-        <h2 className="md:md:text-xl">الشخص المسؤول </h2>
-        <p className="text-[#666666B2]">{item.CreatedBy?.name}</p>
-      </div>
-      <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
-        <h2 className="md:text-xl">التاريخ</h2>
-        <p className="text-[#666666B2]">{item.Date}</p>
-      </div>
-      <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
-        <h2 className="md:text-xl">اسم المشروع</h2>
-        <p className="text-[#666666B2]">{item.ProjectName}</p>
+      <div className="flex md:items-center flex-col md:flex-row gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4 ">
+        <div className="flex flex-wrap justify-between gap-4 items-center   ">
+          <h2 className="md:md:text-xl">الشخص المسؤول </h2>
+          <p className="text-[#666666B2]">{item.CreatedBy?.name}</p>
+        </div>
+        <div className="flex flex-wrap justify-between gap-4   items-center ">
+          <h2 className="md:text-xl">التاريخ</h2>
+          <p className="text-[#666666B2]">{item.Date}</p>
+        </div>
+        <div className="flex flex-wrap justify-between gap-4   items-center ">
+          <h2 className="md:text-xl">اسم المشروع</h2>
+          <p className="text-[#666666B2]">{item?.ProjectName}</p>
+        </div>
       </div>
       {/*  ألعمال */}
       <div className="mb-5 ">
         {item.Employee.map((ele) => {
           return (
             <div key={ele.id} className="mb-5 border-b   pb-2">
-              <h2 className="mb-2.5 md:text-xl"> العمال </h2>
+              <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
+                {" "}
+                العمال{" "}
+              </h2>
 
-              <div className="flex mb-5 justify-between items-center flex-wrap">
-                <p className="text-[#666666B2] text-lg">
-                  نوع العمال : {ele.type}
+              <div className="flex mb-5 justify-between gap-4  items-center flex-wrap">
+                <p className="text-[#666666B2] text-lg mb-2">
+                  <span className="text-black">نوع العمال :</span> {ele.type}
                 </p>
-                <p className="text-[#666666B2] text-lg">
-                  عدد العمال : {ele.number}
+                <p className="text-[#666666B2] text-lg mb-2">
+                  <span className="text-black"> عدد العمال :</span> {ele.number}
                 </p>
               </div>
               <div className="w-full ">
-                <h2 className="md:text-xl">الاعمال التي قاموا بها</h2>
+                <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
                 <p className="text-[#666666B2] text-[18px]">{ele.workDid}</p>
               </div>
             </div>
@@ -43,22 +47,27 @@ const GetAllReports = ({ item }) => {
         {item.Equipments.map((ele) => {
           return (
             <div key={ele.id} className="mb-5 border-b   pb-2">
-              <h2 className="mb-2.5 md:text-xl"> المعدات </h2>
+              <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
+                المعدات{" "}
+              </h2>
 
-              <div className="flex mb-5 justify-between items-center flex-wrap">
-                <p className="text-[#666666B2] text-lg">
-                  اسم المعده : {ele.name}
+              <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
+                <p className="text-[#666666B2] mb-2 text-lg ">
+                  <span className="text-black">اسم المعده : </span> {ele.name}
                 </p>
-                <p className="text-[#666666B2] text-lg">
-                  نوع المعده : {ele.type}
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black">نوع المعده :</span> {ele.type}
                 </p>
-                <p className="text-[#666666B2] text-lg">العدد : {ele.amount}</p>
-                <p className="text-[#666666B2] text-lg">
-                  اسم السائق : {ele.namedDriver}
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black">العدد :</span> {ele.amount}
+                </p>
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black"> اسم السائق :</span>{" "}
+                  {ele.namedDriver}
                 </p>
               </div>
               <div className="w-full ">
-                <h2 className="md:text-xl">الاعمال التي قاموا بها</h2>
+                <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
                 <p className="text-[#666666B2] text-[18px]">{ele.workDid}</p>
               </div>
             </div>
@@ -72,22 +81,27 @@ const GetAllReports = ({ item }) => {
         {item.Supplies.map((ele) => {
           return (
             <div key={ele.id} className="mb-5 border-b   pb-2">
-              <h2 className="mb-2.5 md:text-xl"> التوريدات </h2>
+              <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
+                التوريدات{" "}
+              </h2>
 
-              <div className="flex mb-5 justify-between items-center flex-wrap">
-                <p className="text-[#666666B2] text-lg">
-                  اسم المورد : {ele.name}
+              <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black"> اسم المورد :</span> {ele.name}
                 </p>
-                <p className="text-[#666666B2] text-lg">
-                  نوع التوريد : {ele.type}
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black">نوع التوريد :</span> {ele.type}
                 </p>
-                <p className="text-[#666666B2] text-lg">العدد : {ele.number}</p>
-                <p className="text-[#666666B2] text-lg">
-                  رقم السيارة : {ele.carNumber}
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black">العدد :</span> {ele.number}
+                </p>
+                <p className="text-[#666666B2]  mb-2  text-lg">
+                  <span className="text-black">رقم السيارة :</span>{" "}
+                  {ele.carNumber}
                 </p>
               </div>
               <div className="w-full ">
-                <h2 className="md:text-xl">الاعمال التي قاموا بها</h2>
+                <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
                 <p className="text-[#666666B2] text-[18px]">{ele.supplies}</p>
               </div>
             </div>

@@ -66,6 +66,7 @@ const TaskSend = ({ title, apiUrl }) => {
       />
     );
   });
+
   let tawredatMap = tawredat.map((item) => {
     return (
       <Eltawredat
@@ -127,7 +128,7 @@ const TaskSend = ({ title, apiUrl }) => {
         });
       });
     setProName("");
-    // setProjects("");
+    setProjects("");
     setOkAndDone("");
     setOk("");
     setIObstacles("");
@@ -177,12 +178,10 @@ const TaskSend = ({ title, apiUrl }) => {
               type="text"
               placeholder="اسم المشروع">
               <option className="hidden">اختر المشروع</option>
-              {projects.map((item) => {
+              {projects?.map((item) => {
                 return (
                   <>
-                    <div key={item?.projectName}>
-                      <option>{item?.projectName}</option>
-                    </div>
+                    <option>{item?.projectName}</option>
                   </>
                 );
               })}

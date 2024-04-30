@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { CurrentChatContext } from "../../contexts/CurrentClickChat";
 import back from "../../img/Mg/Back.png";
-import axios from "axios";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+
 const PersonWhoChatWith = ({ handleDeleteAllMsg }) => {
   let handleDeleteAll = () => {
     handleDeleteAllMsg();
@@ -11,13 +12,15 @@ const PersonWhoChatWith = ({ handleDeleteAllMsg }) => {
     <div className="mb-5 border-b pb-4  ">
       <div className="flex items-center justify-between gap-2">
         <h2 className=" sm:text-3xl capitalize   ">{currentChat.name}</h2>
-        <div onClick={handleDeleteAll} className="flex items-center gap-2">
-          <button className="hover:bg-red-500 hover:text-white rounded-xl cursor-pointer transition-all duration-200  text-red-500 px-3 sm:px-6 py-[6px] border-2 border-red-500">
-            حذف الرسائل
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleDeleteAll}
+            className="hover:bg-red-500 hover:text-white w-8 h-8 rounded text-xl grid place-items-center cursor-pointer transition-all duration-200  text-red-500 border-2 border-red-500">
+            <RiDeleteBin6Fill />
           </button>
           <img
             src={back}
-            className="backInPhone cursor-pointer  w-10"
+            className="backInPhone cursor-pointer  w-10 "
             onClick={() => setCurrentChat("")}
           />
         </div>
