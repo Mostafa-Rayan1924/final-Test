@@ -127,13 +127,6 @@ const TaskSend = ({ title, apiUrl }) => {
           text: error.response?.data?.message,
         });
       });
-    setProName("");
-    setProjects("");
-    setOkAndDone("");
-    setOk("");
-    setIObstacles("");
-    setReqiurments("");
-    setFile("");
   };
   // get names of project
   useEffect(() => {

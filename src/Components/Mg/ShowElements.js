@@ -162,7 +162,9 @@ const ShowElements = () => {
           </NavLink>
           <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
             <img src={chat} />
-            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+            <span className="  md:text-[18px] lg:text-base mt-5">
+              المحادثات
+            </span>
           </NavLink>
         </ul>
       ) : (
