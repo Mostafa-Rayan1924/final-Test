@@ -56,7 +56,6 @@ const LeftChat = () => {
       />
     );
   });
-  console.log(notifications);
   // connect to server io and get messages
   useEffect(() => {
     socket.current = io("https://mg-company.onrender.com");
@@ -152,6 +151,7 @@ const LeftChat = () => {
       });
     }
   };
+  console.log(notifications);
   // open noti
   let openNotifications = () => {
     if (notifications.length > 0) {
@@ -170,13 +170,13 @@ const LeftChat = () => {
     <>
       <div
         onClick={openNotifications}
-        className="fixed top-20 left-5 text-yellow-400 ">
+        className="fixed top-20 left-5 z-[2000] text-yellow-400 ">
         <IoIosNotifications size={40} />
         <div className="absolute top-0 right-0 max-w-[90%] bg-red-600 text-white w-5 h-5 grid place-items-center text-sm rounded-full ">
           {notifications?.length}
         </div>
         {openNotificationsBar ? (
-          <div className="messages absolute w-[300px] left-1/2 -translate-x-1/2 divide-y-2  overflow-y-scroll bg-slate-100 max-h-[150px] rounded  p-4 text-black">
+          <div className="messages fixed w-[300px] lg:w-[700px]  top-1/2 -translate-y-1/2  left-1/2 -translate-x-1/2 divide-y-2  overflow-y-scroll bg-slate-100 max-h-[350px] rounded  p-4 text-black">
             {notifications.map((item) => {
               return (
                 <div className="pb-1 my-1">
