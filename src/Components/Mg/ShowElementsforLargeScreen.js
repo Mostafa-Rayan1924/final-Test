@@ -52,7 +52,7 @@ const ShowElementsforLargeScreen = () => {
             style={navActive}
             to={"chats"}
             className={"flex  gap-2 mt-5"}>
-            <img src={chat} className="my" />
+            <img src={chat} className="" />
             <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
@@ -65,7 +65,7 @@ const ShowElementsforLargeScreen = () => {
           <NavLink
             style={navActive}
             to={"dailyTaskSend"}
-            className={"flex  gap-2"}>
+            className={"flex gap-2"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -363,7 +363,7 @@ const ShowElementsforLargeScreen = () => {
             style={navActive}
             to={"chats"}
             className={"flex  gap-2 mt-5"}>
-            <img src={chat} className="my" />
+            <img src={chat} className="" />
             <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>

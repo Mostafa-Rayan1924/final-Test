@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { TypeOfEquips } from "../dataOfSelectBox";
 import { nameOfEquip } from "../dataOfSelectBox";
+import { MdDelete } from "react-icons/md";
+
 const Equipments = ({ equipments, setEquipments, item }) => {
   // states for tawredat
   let [OkState, setOkstate] = useState(false);
@@ -39,6 +41,12 @@ const Equipments = ({ equipments, setEquipments, item }) => {
       }
     });
     setEquipments(equipmentsEdit);
+  }
+  function handleDel() {
+    let EquipmentsDel = equipments.filter((ele) => {
+      return ele.iddd !== item.iddd;
+    });
+    setEquipments(EquipmentsDel);
   }
   return (
     <div className="flex-col flex  mb-10  w-full">
@@ -102,9 +110,17 @@ const Equipments = ({ equipments, setEquipments, item }) => {
             handleSave(item);
           }}
           className={`absolute ${
-            OkState ? "bg-green-500" : "bg-red-500"
+            OkState ? "bg-green-500" : "bg-yellow-500"
           }  w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
           تم
+        </div>
+        <div
+          onClick={() => {
+            handleDel(item);
+          }}
+          className={`absolute bg-red-500
+            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+          <MdDelete />
         </div>
       </div>
       <input

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { TypeOfMowardeen } from "../dataOfSelectBox";
 import { nameOfMowardeen } from "../dataOfSelectBox";
+import { MdDelete } from "react-icons/md";
+
 const Eltawredat = ({ tawredat, setTawerdat, item }) => {
   // states for tawredat
   let [OkState, setOkstate] = useState(false);
@@ -40,6 +42,12 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
     });
     setTawerdat(TawredatEdit);
     // console.log(id);
+  }
+  function handleDel() {
+    let TawredatDel = tawredat.filter((ele) => {
+      return ele.iddd !== item.iddd;
+    });
+    setTawerdat(TawredatDel);
   }
   // console.log(tawredat);
   return (
@@ -104,9 +112,17 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
             handleSave(item);
           }}
           className={`absolute ${
-            OkState ? "bg-green-500" : "bg-red-500"
-          }  w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
+            OkState ? "bg-green-500" : "bg-yellow-500"
+          } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
           تم
+        </div>
+        <div
+          onClick={() => {
+            handleDel(item);
+          }}
+          className={`absolute bg-red-500
+            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+          <MdDelete />
         </div>
       </div>
       <input

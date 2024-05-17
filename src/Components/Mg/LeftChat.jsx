@@ -5,7 +5,6 @@ import sendBtn from "../../img/Mg/Vector.png";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { MdDoNotDisturb } from "react-icons/md";
 import { CurrentChatContext } from "../../contexts/CurrentClickChat";
-import { IoIosNotifications } from "react-icons/io";
 import axios from "axios";
 import { authContext } from "../../contexts/Auth";
 import { ConvIdChatContext } from "../../contexts/ConversationId";
@@ -20,13 +19,6 @@ const LeftChat = () => {
   let [send, setSend] = useState("");
   let [messages, setMessages] = useState([]);
   let [waitMsg, setWaitMsg] = useState(false);
-  const [notifications, setNotifications] = useState([]);
-  let [openNotificationsBar, setopenNotificationsBar] = useState(false);
-  useEffect(() => {
-    socket.current?.on("getNotification", (data) => {
-      setNotifications((prev) => [...prev, data]);
-    });
-  }, [socket]);
   //  get messages
   let getMessages = () => {
     if (currentChat !== "") {
@@ -143,21 +135,9 @@ const LeftChat = () => {
         .catch((e) => {
           console.log(e);
         });
-      //send notification
-      socket.current?.emit("sendNotification", {
-        senderName: auth.user.name,
-        receiverName: currentChat.name,
-        receiverId: currentChat._id,
-      });
     }
   };
-  console.log(notifications);
-  // open noti
-  let openNotifications = () => {
-    if (notifications.length > 0) {
-      setopenNotificationsBar((prev) => !prev);
-    }
-  };
+
   // up btn
   let handleUp = (e) => {
     e.preventDefault();
@@ -168,35 +148,6 @@ const LeftChat = () => {
   };
   return (
     <>
-      <div
-        onClick={openNotifications}
-        className="fixed top-20 left-5 z-[2000] text-yellow-400 ">
-        <IoIosNotifications size={40} />
-        <div className="absolute top-0 right-0 max-w-[90%] bg-red-600 text-white w-5 h-5 grid place-items-center text-sm rounded-full ">
-          {notifications?.length}
-        </div>
-        {openNotificationsBar ? (
-          <div className="messages fixed w-[300px] lg:w-[700px]  top-1/2 -translate-y-1/2  left-1/2 -translate-x-1/2 divide-y-2  overflow-y-scroll bg-slate-100 max-h-[350px] rounded  p-4 text-black">
-            {notifications.map((item) => {
-              return (
-                <div className="pb-1 my-1">
-                  <span className=" font-bold ml-1">{item.senderName}</span>
-                  <span>ارسل رساله</span>
-                </div>
-              );
-            })}
-            <button
-              onClick={() => {
-                setNotifications([]);
-              }}
-              className="bg-yellow-400 p-2 w-full rounded-lg my-2 text-white">
-              تم القراءه
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
       <div
         className={`${
           currentChat !== "" ? "flex-col" : "hidden lg:flex flex-col"

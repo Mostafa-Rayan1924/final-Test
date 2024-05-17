@@ -6,7 +6,7 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Error from "./Components/InAll/Error";
 import { Theme } from "./contexts/themeContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Components/Mg/Login";
 import ProDetails from "./Components/Projects/ProDetails";
 import Dashboard from "./Components/Mg/Dashboard";
@@ -22,8 +22,17 @@ import AllTasks from "./Components/Mg/AllTasks/AllTask";
 import Chats from "./Components/Mg/Chats";
 import { ChatContextProvider } from "./contexts/CurrentClickChat";
 import { ChatConvIdProvider } from "./contexts/ConversationId";
+import { useLocation } from "react-router-dom";
+
 export default function App() {
   let [themes, setThemes] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("mgsystem")) {
+      document.body.classList.remove("dark");
+    }
+  }, [location]);
+
   return (
     <>
       <ChatConvIdProvider>

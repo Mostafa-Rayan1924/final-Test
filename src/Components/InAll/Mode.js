@@ -2,10 +2,8 @@ import { useContext, useEffect } from "react";
 import { Theme } from "../../contexts/themeContext";
 import sun from "../../img/assets/moon.png";
 import moon from "../../img/assets/sun.png";
-
 const Mode = () => {
   let { themes, setThemes } = useContext(Theme);
-
   useEffect(() => {
     themes
       ? document.body.classList.add("dark")

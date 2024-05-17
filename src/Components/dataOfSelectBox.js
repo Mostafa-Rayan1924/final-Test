@@ -1,6 +1,6 @@
-export let dataOftype = ["مبلط", "ممحر", "سمكري", "نجار"];
-export let nameOfMowardeen = ["محمد", "صاصا", "علي"];
-export let TypeOfMowardeen = ["mg", "newGas", "isc"];
+export let dataOftype = ["مبلط", "ممحر", "نقاش", "نجار"];
+export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
+export let TypeOfMowardeen = ["حداده", "سباكة", "نقاشه"];
 export let nameOfEquip = ["محمد", "صاصا", "علي"];
 export let TypeOfEquips = ["كراك", "دكاك", "جرار"];
 export let AllnamesByRole = [

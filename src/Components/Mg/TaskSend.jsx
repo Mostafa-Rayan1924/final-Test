@@ -54,7 +54,7 @@ const TaskSend = ({ title, apiUrl }) => {
   // reqiurments
   let [reqiurments, setReqiurments] = useState("");
   //  file
-  let [file, setFile] = useState("");
+  let [file, setFile] = useState(null);
   // maping boxes which have select box and + elements
   let workersMap = workers.map((item) => {
     return (
@@ -100,7 +100,9 @@ const TaskSend = ({ title, apiUrl }) => {
     formdata.append("InternalObstacles", Iobstacles);
     formdata.append("ExternalObstacles", Eobstacles);
     formdata.append("Requirements", reqiurments);
-    formdata.append("file", file);
+    for (let i = 0; i < file.length; i++) {
+      formdata.append(`files`, file[i]);
+    }
 
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -116,7 +118,7 @@ const TaskSend = ({ title, apiUrl }) => {
         Swal.fire({
           icon: "success",
           title: "OKay...",
-          text: "Your Report Send Succesfully",
+          text: "تم ارسال التقرير بنجاح",
         });
       })
       .catch((error) => {
@@ -265,11 +267,12 @@ const TaskSend = ({ title, apiUrl }) => {
               htmlFor="fileUpload">
               <input
                 onChange={(e) => {
-                  setFile(e.target.files[0]);
+                  setFile(e.target.files);
                 }}
                 type="file"
                 className="hidden"
                 id="fileUpload"
+                multiple
               />
 
               <svg
@@ -285,9 +288,10 @@ const TaskSend = ({ title, apiUrl }) => {
               </svg>
             </label>
           </div>
+
           <div className="">
             <button className="bg-yellow-500  py-3 px-28 rounded-xl text-white font-bold text-2xl w-fit ">
-              Submit
+              إرسال
             </button>
           </div>
         </form>

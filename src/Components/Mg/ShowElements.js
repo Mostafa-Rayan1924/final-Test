@@ -44,10 +44,13 @@ const ShowElements = () => {
               />
             </svg>
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
-            <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
-              <img src={chat} />
-              <span className="  md:text-[18px] lg:text-base">المحادثات</span>
-            </NavLink>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex mt-5  gap-2"}>
+            <img src={chat} />
+            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
