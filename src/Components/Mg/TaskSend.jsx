@@ -9,6 +9,7 @@ import Eltawredat from "./Eltawredat";
 import { useLocation } from "react-router-dom";
 import Equipments from "./Equipments";
 import { authContext } from "../../contexts/Auth";
+// end of imports
 const TaskSend = ({ title, apiUrl }) => {
   let [load, setLoad] = useState(false);
   let { auth, setAuth } = useContext(authContext);
@@ -106,7 +107,7 @@ const TaskSend = ({ title, apiUrl }) => {
     let formdata = new FormData();
     formdata.append("ProjectName", proName);
     formdata.append("Equipments", JSON.stringify(equipments));
-    formdata.append("SuppliesFile", fileTawredat);
+    // formdata.append("SuppliesFile", fileTawredat);
     formdata.append("Supplies", JSON.stringify(tawredat));
     formdata.append("Employee", JSON.stringify(workers));
     formdata.append("WorkCompleted", ok);
@@ -121,6 +122,11 @@ const TaskSend = ({ title, apiUrl }) => {
         formdata.append(`files`, file[i]);
       }
     }
+    if (fileTawredat !== null) {
+      for (let i = 0; i < fileTawredat.length; i++) {
+        formdata.append(`suppliesFile`, fileTawredat[i]);
+      }
+    }
 
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -130,6 +136,7 @@ const TaskSend = ({ title, apiUrl }) => {
         headers: headers,
       })
       .then((res) => {
+        console.log(res.data);
         setLoad(false);
 
         Swal.fire({
@@ -148,7 +155,7 @@ const TaskSend = ({ title, apiUrl }) => {
       });
   };
   // get names of project
-  useEffect(() => {
+  let getProjects = () => {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
@@ -165,6 +172,9 @@ const TaskSend = ({ title, apiUrl }) => {
       .catch((error) => {
         console.log(error.response?.data?.message);
       });
+  };
+  useEffect(() => {
+    getProjects();
   }, []);
 
   return (
@@ -213,14 +223,14 @@ const TaskSend = ({ title, apiUrl }) => {
             </label>
             <label
               className="w-full md:w-1/2  flex-col md:flex-row cursor-pointer flex items-center justify-center  h-[49px] px-[101.50px] py-2.5 bg-sky-500 rounded-[11px] text-white"
-              htmlFor="fileUpload">
+              htmlFor="fileUploads">
               <input
                 onChange={(e) => {
                   setFileTawredat(e.target.files);
                 }}
                 type="file"
                 className="hidden"
-                id="fileUpload"
+                id="fileUploads"
                 multiple
               />
 

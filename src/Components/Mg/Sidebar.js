@@ -2,6 +2,7 @@ import { useContext } from "react";
 import imgProfile from "../../img/aboutImg/avatar-05.png";
 import { authContext } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
+import my from "./../../img/assets/my.jpg";
 import Swal from "sweetalert2";
 import ShowElementsforLargeScreen from "./ShowElementsforLargeScreen";
 import axios from "axios";
@@ -34,7 +35,7 @@ const Sidebar = () => {
       <div className="py-[100px]  lg:px-6">
         <img
           className="max-w-full md:w-20 md:h-20 lg:w-24 lg:h-24  bg-black rounded-[16px] object-cover"
-          src={auth.user?.name == "مصطفي ريان" ? "" : imgProfile}
+          src={auth.user?.name == "مصطفي ريان" ? my : imgProfile}
         />
         <h2 className="text-white mt-3 mb-1 font-bold">
           مرحبا : {auth.user?.name}

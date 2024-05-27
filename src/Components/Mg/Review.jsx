@@ -111,7 +111,7 @@ const Review = () => {
             <option>مكتب فني</option>
           </select>
         </div>
-        {reviewInfo.reviewToWho ? (
+        {reviewInfo.reviewToWho.length > 0 ? (
           <>
             <div className="flex justify-between md:flex-row gap-4 flex-wrap mb-5">
               <h3 className=" text-black text-2xl font-bold ">الاسم:</h3>

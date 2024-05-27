@@ -29,7 +29,13 @@ const GetMyReview = ({ item }) => {
           <p className="text-stone-500 text-lg font-bold">{item.title}</p>
         </div>
         <div className="flex justify-between flex-wrap mb-5">
-          <h3 className=" text-black text-2xl font-bold "> التقيم من (5) :</h3>
+          <h3
+            className={` text-black ${
+              item.rating >= 4 ? "text-xl" : "text-2xl"
+            } font-bold `}>
+            {" "}
+            التقيم من (5) :
+          </h3>
           <p className="text-gold-500 text-lg flex items-center font-bold">
             {[...Array(item.rating)].map((item) => {
               return <FaStar size={30} color="gold" />;

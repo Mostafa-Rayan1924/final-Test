@@ -76,6 +76,7 @@ const GetAllReports = ({ item }) => {
                 {ele.namedDriver}
               </p>
             </div>
+
             <div className="w-full">
               <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
               <p className="text-[#666666B2] font-bold text-[18px]">
@@ -109,6 +110,7 @@ const GetAllReports = ({ item }) => {
                 {ele.carNumber}
               </p>
             </div>
+
             <div className="w-full">
               <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
               <p className="text-[#666666B2] text-[18px]">{ele.supplies}</p>
@@ -116,6 +118,18 @@ const GetAllReports = ({ item }) => {
           </div>
         ))}
       </div>
+      {item.suppliesFile && (
+        <div className="flex flex-wrap items-center my-5 justify-between  border-b pb-4 ">
+          <h2 className="md:text-xl">تنزيل ملفات التوريدات</h2>
+          <a
+            target="_blank"
+            className="bg-sky-500 px-6 py-2 text-white rounded-lg"
+            download={"file"}
+            href={item.suppliesFile}>
+            تنزيل الملفات
+          </a>
+        </div>
+      )}
       {/* End Supplies */}
 
       {/* Work Delivered */}
