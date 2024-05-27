@@ -1,6 +1,5 @@
 import React from "react";
 const GetAllReports = ({ item }) => {
-  console.log(item.files);
   // Filter out empty arrays
   const filteredEmployees = item.Employee.filter(
     (ele) => ele && Object.keys(ele).length > 0
@@ -11,8 +10,7 @@ const GetAllReports = ({ item }) => {
   const filteredSupplies = item.Supplies.filter(
     (ele) => ele && Object.keys(ele).length > 0
   );
-  console.log(item.files);
-
+  console.log(item);
   return (
     <div className="shadow  bg-slate-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
       <div className="flex md:items-center flex-col md:flex-row gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4">

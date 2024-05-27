@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { authContext } from "../../contexts/Auth";
 import { NavLink } from "react-router-dom";
 import Error from "../InAll/Error";
-import chat from "../../img/Mg/Group.png";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+
 const ShowElements = () => {
   let { auth, setAuth } = useContext(authContext);
   function navActive({ isActive }) {
@@ -49,8 +50,8 @@ const ShowElements = () => {
             style={navActive}
             to={"chats"}
             className={"flex mt-5  gap-2"}>
-            <img src={chat} />
-            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+            <IoChatbubbleEllipsesOutline size={24} height={27} />
+            <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -163,11 +164,9 @@ const ShowElements = () => {
             </svg>
             <span className="  md:text-[18px] lg:text-base">جميع الطلبات</span>
           </NavLink>
-          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
-            <img src={chat} />
-            <span className="  md:text-[18px] lg:text-base mt-5">
-              المحادثات
-            </span>
+          <NavLink style={navActive} to={"chats"} className={"flex mt-2 gap-2"}>
+            <IoChatbubbleEllipsesOutline size={24} height={27} />
+            <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -257,8 +256,8 @@ const ShowElements = () => {
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
           </NavLink>
           <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
-            <img src={chat} />
-            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+            <IoChatbubbleEllipsesOutline size={24} height={27} />
+            <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
           </NavLink>
         </ul>
       ) : (
@@ -343,8 +342,166 @@ const ShowElements = () => {
             <span className="  md:text-[18px] lg:text-base">الطلبات</span>
           </NavLink>
           <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
-            <img src={chat} />
-            <span className="  md:text-[18px] lg:text-base">المحادثات</span>
+            <IoChatbubbleEllipsesOutline size={24} height={27} />
+            <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
+          </NavLink>
+        </ul>
+      ) : (
+        ""
+      )}
+      {/* list of الادارة */}
+
+      {auth.user?.role == "الادارة" ? (
+        <ul>
+          <NavLink
+            style={navActive}
+            to={"dailyTaskSend"}
+            className={"flex  gap-2"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none">
+              <path
+                d="M12 0C10.4241 0 8.86371 0.310389 7.4078 0.913446C5.95189 1.5165 4.62902 2.40042 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C4.62902 21.5996 5.95189 22.4835 7.4078 23.0866C8.86371 23.6896 10.4241 24 12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 10.4241 23.6896 8.86371 23.0866 7.4078C22.4835 5.95189 21.5996 4.62902 20.4853 3.51472C19.371 2.40042 18.0481 1.5165 16.5922 0.913446C15.1363 0.310389 13.5759 0 12 0ZM17.04 17.04L10.8 13.2V6H12.6V12.24L18 15.48L17.04 17.04Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">
+              الموقف اليومي المرسل
+            </span>
+          </NavLink>
+          <NavLink
+            to={"WeeklyTaskSend"}
+            style={navActive}
+            className={"flex gap-2 mt-5"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none">
+              <path
+                d="M21.75 24H2.25C1.005 24 0 22.995 0 21.75V3.75C0 2.505 1.005 1.5 2.25 1.5H21.75C22.995 1.5 24 2.505 24 3.75V21.75C24 22.995 22.995 24 21.75 24ZM2.25 3C1.83 3 1.5 3.33 1.5 3.75V21.75C1.5 22.17 1.83 22.5 2.25 22.5H21.75C22.17 22.5 22.5 22.17 22.5 21.75V3.75C22.5 3.33 22.17 3 21.75 3H2.25Z"
+                fill="white"
+              />
+              <path
+                d="M6.75 6C6.33 6 6 5.67 6 5.25V0.75C6 0.33 6.33 0 6.75 0C7.17 0 7.5 0.33 7.5 0.75V5.25C7.5 5.67 7.17 6 6.75 6ZM17.25 6C16.83 6 16.5 5.67 16.5 5.25V0.75C16.5 0.33 16.83 0 17.25 0C17.67 0 18 0.33 18 0.75V5.25C18 5.67 17.67 6 17.25 6ZM23.25 9H0.75C0.33 9 0 8.67 0 8.25C0 7.83 0.33 7.5 0.75 7.5H23.25C23.67 7.5 24 7.83 24 8.25C24 8.67 23.67 9 23.25 9Z"
+                fill="white"
+              />
+              <path
+                d="M6 15C6.82843 15 7.5 14.3284 7.5 13.5C7.5 12.6716 6.82843 12 6 12C5.17157 12 4.5 12.6716 4.5 13.5C4.5 14.3284 5.17157 15 6 15Z"
+                fill="white"
+              />
+              <path
+                d="M12 15C12.8284 15 13.5 14.3284 13.5 13.5C13.5 12.6716 12.8284 12 12 12C11.1716 12 10.5 12.6716 10.5 13.5C10.5 14.3284 11.1716 15 12 15Z"
+                fill="black"
+              />
+              <path
+                d="M18 15C18.8284 15 19.5 14.3284 19.5 13.5C19.5 12.6716 18.8284 12 18 12C17.1716 12 16.5 12.6716 16.5 13.5C16.5 14.3284 17.1716 15 18 15Z"
+                fill="black"
+              />
+              <path
+                d="M6 19.5C6.82843 19.5 7.5 18.8284 7.5 18C7.5 17.1716 6.82843 16.5 6 16.5C5.17157 16.5 4.5 17.1716 4.5 18C4.5 18.8284 5.17157 19.5 6 19.5Z"
+                fill="black"
+              />
+              <path
+                d="M12 19.5C12.8284 19.5 13.5 18.8284 13.5 18C13.5 17.1716 12.8284 16.5 12 16.5C11.1716 16.5 10.5 17.1716 10.5 18C10.5 18.8284 11.1716 19.5 12 19.5Z"
+                fill="white"
+              />
+              <path
+                d="M18 19.5C18.8284 19.5 19.5 18.8284 19.5 18C19.5 17.1716 18.8284 16.5 18 16.5C17.1716 16.5 16.5 17.1716 16.5 18C16.5 18.8284 17.1716 19.5 18 19.5Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">
+              الموقف الاسبوعي المرسل
+            </span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"sendTasks"}
+            className={"flex gap-2 mt-5"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="16"
+              viewBox="0 0 28 16"
+              fill="none">
+              <path
+                d="M25.6667 0H10.5C9.21667 0 8.16667 1.10769 8.16667 2.46154V13.5385C8.16667 14.1913 8.4125 14.8174 8.85008 15.279C9.28767 15.7407 9.88116 16 10.5 16H25.6667C26.9617 16 28 14.9046 28 13.5385V2.46154C28 1.8087 27.7542 1.1826 27.3166 0.720968C26.879 0.25934 26.2855 0 25.6667 0ZM25.6667 4.51692L18.0833 8.61539L10.5 4.51692V2.46154L18.0833 6.53539L25.6667 2.46154V4.51692ZM5.83333 13.5385C5.83333 13.7477 5.86833 13.9446 5.89167 14.1538H1.16667C0.522667 14.1538 0 13.6 0 12.9231C0 12.2462 0.522667 11.6923 1.16667 11.6923H5.83333V13.5385ZM3.5 1.84615H5.89167C5.86833 2.05538 5.83333 2.25231 5.83333 2.46154V4.30769H3.5C2.85833 4.30769 2.33333 3.75385 2.33333 3.07692C2.33333 2.4 2.85833 1.84615 3.5 1.84615ZM1.16667 8C1.16667 7.32308 1.69167 6.76923 2.33333 6.76923H5.83333V9.23077H2.33333C1.69167 9.23077 1.16667 8.67692 1.16667 8Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">أرسال الطلبات</span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"allTasks"}
+            className={"flex gap-2 my-5"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="27"
+              viewBox="0 0 24 27"
+              fill="none">
+              <path
+                d="M16.32 24.1728L13.8336 21.6864L12.48 23.04L16.32 26.88L24 19.2L22.6464 17.8464L16.32 24.1728Z"
+                fill="white"
+              />
+              <path
+                d="M19.2 2.88H16.32V1.92C16.3185 1.41125 16.1157 0.923774 15.756 0.564034C15.3962 0.204293 14.9087 0.00151942 14.4 0H6.72C6.21125 0.00151942 5.72377 0.204293 5.36403 0.564034C5.00429 0.923774 4.80152 1.41125 4.8 1.92V2.88H1.92C1.41125 2.88152 0.923775 3.08429 0.564034 3.44403C0.204293 3.80377 0.00151942 4.29125 0 4.8V24.96C0.00151942 25.4687 0.204293 25.9562 0.564034 26.316C0.923775 26.6757 1.41125 26.8785 1.92 26.88H10.56V24.96H1.92V4.8H4.8V7.68H16.32V4.8H19.2V15.36H21.12V4.8C21.1185 4.29125 20.9157 3.80377 20.556 3.44403C20.1962 3.08429 19.7087 2.88152 19.2 2.88ZM14.4 5.76H6.72V1.92H14.4V5.76Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">جميع الطلبات</span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"review"}
+            className={"flex gap-2 my-5"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="27"
+              viewBox="0 0 24 27"
+              fill="none">
+              <path
+                d="M16.32 24.1728L13.8336 21.6864L12.48 23.04L16.32 26.88L24 19.2L22.6464 17.8464L16.32 24.1728Z"
+                fill="white"
+              />
+              <path
+                d="M19.2 2.88H16.32V1.92C16.3185 1.41125 16.1157 0.923774 15.756 0.564034C15.3962 0.204293 14.9087 0.00151942 14.4 0H6.72C6.21125 0.00151942 5.72377 0.204293 5.36403 0.564034C5.00429 0.923774 4.80152 1.41125 4.8 1.92V2.88H1.92C1.41125 2.88152 0.923775 3.08429 0.564034 3.44403C0.204293 3.80377 0.00151942 4.29125 0 4.8V24.96C0.00151942 25.4687 0.204293 25.9562 0.564034 26.316C0.923775 26.6757 1.41125 26.8785 1.92 26.88H10.56V24.96H1.92V4.8H4.8V7.68H16.32V4.8H19.2V15.36H21.12V4.8C21.1185 4.29125 20.9157 3.80377 20.556 3.44403C20.1962 3.08429 19.7087 2.88152 19.2 2.88ZM14.4 5.76H6.72V1.92H14.4V5.76Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">التقييم</span>
+          </NavLink>
+          <NavLink
+            style={navActive}
+            to={"allReview"}
+            className={"flex gap-2 my-5"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="27"
+              viewBox="0 0 24 27"
+              fill="none">
+              <path
+                d="M16.32 24.1728L13.8336 21.6864L12.48 23.04L16.32 26.88L24 19.2L22.6464 17.8464L16.32 24.1728Z"
+                fill="white"
+              />
+              <path
+                d="M19.2 2.88H16.32V1.92C16.3185 1.41125 16.1157 0.923774 15.756 0.564034C15.3962 0.204293 14.9087 0.00151942 14.4 0H6.72C6.21125 0.00151942 5.72377 0.204293 5.36403 0.564034C5.00429 0.923774 4.80152 1.41125 4.8 1.92V2.88H1.92C1.41125 2.88152 0.923775 3.08429 0.564034 3.44403C0.204293 3.80377 0.00151942 4.29125 0 4.8V24.96C0.00151942 25.4687 0.204293 25.9562 0.564034 26.316C0.923775 26.6757 1.41125 26.8785 1.92 26.88H10.56V24.96H1.92V4.8H4.8V7.68H16.32V4.8H19.2V15.36H21.12V4.8C21.1185 4.29125 20.9157 3.80377 20.556 3.44403C20.1962 3.08429 19.7087 2.88152 19.2 2.88ZM14.4 5.76H6.72V1.92H14.4V5.76Z"
+                fill="white"
+              />
+            </svg>
+            <span className="  md:text-[18px] lg:text-base">جميع التقيمات</span>
+          </NavLink>
+          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+            <IoChatbubbleEllipsesOutline size={24} height={27} />
+            <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
           </NavLink>
         </ul>
       ) : (

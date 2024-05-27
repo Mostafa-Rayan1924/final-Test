@@ -6,7 +6,7 @@ const WeeklyTask = () => {
     <div>
       <TaskSend
         title={"الموقف التنفيذي الاسبوعي"}
-        apiUrl={"createReportWeekly"}
+        apiUrl={"createReportDaily"}
       />
     </div>
   );

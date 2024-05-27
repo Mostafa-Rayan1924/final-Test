@@ -64,7 +64,7 @@ const AllTask = ({ managerTasks }) => {
     };
     axios
       .get(
-        `https://mg-company.cyclic.app/mg/task/getTaskDay?date=${e.target.value}`,
+        `https://mg-company.onrender.com/mg/task/getTaskDay?date=${e.target.value}`,
         {
           headers: headers,
         }

@@ -1,8 +1,24 @@
-export let dataOftype = ["مبلط", "ممحر", "نقاش", "نجار"];
-export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
-export let TypeOfMowardeen = ["حداده", "سباكة", "نقاشه"];
-export let nameOfEquip = ["محمد", "صاصا", "علي"];
-export let TypeOfEquips = ["كراك", "دكاك", "جرار"];
+export let dataOftype = [
+  "سباك",
+  "كهربائي",
+  "رخام",
+  "الومنيوم",
+  "زجاج",
+  "كريتال",
+  "سقاله",
+];
+// export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
+export let TypeOfMowardeen = ["حداده", "سباكة", "نقاشه", "نجاره", "كهرباء"];
+// export let nameOfEquip = ["محمد", "صاصا", "علي"];
+export let TypeOfEquips = [
+  "جليدر",
+  "لودر",
+  "حفار",
+  "هراس",
+  "عربية مياه",
+  "سياره نقل كبيره",
+  "سياره خدمه نص نقل",
+];
 export let AllnamesByRole = [
   "كريم يونس",
   "عادل سيد احمد",

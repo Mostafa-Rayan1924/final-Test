@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div className="py-[100px]  lg:px-6">
         <img
           className="max-w-full md:w-20 md:h-20 lg:w-24 lg:h-24  bg-black rounded-[16px] object-cover"
-          src={imgProfile}
+          src={auth.user?.name == "مصطفي ريان" ? "" : imgProfile}
         />
         <h2 className="text-white mt-3 mb-1 font-bold">
           مرحبا : {auth.user?.name}
@@ -49,7 +49,7 @@ const Sidebar = () => {
         <ShowElementsforLargeScreen />
         <button
           onClick={handleLogOut}
-          className="px-6 py-2 bg-red-500 text-white rounded-xl my-20">
+          className="px-6 py-2 bg-white text-red-500 font-bold rounded-xl my-10">
           Logout
         </button>
       </div>

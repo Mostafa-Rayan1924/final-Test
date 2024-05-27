@@ -11,6 +11,7 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
   let [numsOfMowared, setNumsOfMowared] = useState("");
   let [carNumber, setCarNumber] = useState("");
   let [tawredatTextArea, setTawredatTextArea] = useState("");
+  let [fileTawred, setFileTawred] = useState(null);
 
   function handleAddInput() {
     let newInps = {
@@ -29,11 +30,12 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
       if (ele.iddd == item.iddd) {
         let newItem = {
           ...ele,
-          name: nameOfMowared,
+          // name: nameOfMowared,
           type: typeOfMowared,
           number: numsOfMowared,
           carNumber: carNumber,
           supplies: tawredatTextArea,
+          //SendFile: fileTawred,
         };
         return newItem;
       } else {
@@ -54,7 +56,7 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
     <div className="flex-col flex  mb-10  w-full">
       <label className="w-full mb-5"> التوريدات</label>
       <div className="w-full mb-4  relative grid md:grid-cols-4 grid-cols-2 gap-2">
-        <select
+        {/* <select
           value={nameOfMowared}
           onChange={(e) => {
             setNameOfMowared(e.target.value);
@@ -68,7 +70,7 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
               </>
             );
           })}
-        </select>
+        </select> */}
         <select
           value={typeOfMowared}
           onChange={(e) => {
@@ -78,7 +80,7 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
           {TypeOfMowardeen.map((item) => {
             return (
               <>
-                <option className="hidden">نوع المورد</option>
+                <option className="hidden">نوع التوريد</option>
 
                 <option key={item}>{item}</option>
               </>
@@ -116,14 +118,18 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
           } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
           تم
         </div>
-        <div
-          onClick={() => {
-            handleDel(item);
-          }}
-          className={`absolute bg-red-500
-            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
-          <MdDelete />
-        </div>
+        {tawredat.length > 1 ? (
+          <div
+            onClick={() => {
+              handleDel(item);
+            }}
+            className={`absolute bg-red-500
+          } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+            <MdDelete />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <input
         value={tawredatTextArea}

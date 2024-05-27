@@ -5,9 +5,10 @@ const WeeklyTaskSend = () => {
   return (
     <>
       <TasksWhichSend
-        apiUrl={"getReportWeekly"}
+        apiUrl={"getReportDaily"}
+        cat={"Weekly"}
         title={"الموقف الاسبوعي المرسل"}
-        filterTask={"getReportWeeklyByDay"}
+        filterTask={"getReportDailyByDay"}
         showFilterByName={false}
         // apiFilterByName={""}
       />

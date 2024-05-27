@@ -82,14 +82,18 @@ const Workers = ({ workers, setWorkers, item }) => {
             } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
             تم
           </div>
-          <div
-            onClick={() => {
-              handleDel(item);
-            }}
-            className={`absolute bg-red-500
-            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
-            <MdDelete />
-          </div>
+          {workers.length > 1 ? (
+            <div
+              onClick={() => {
+                handleDel(item);
+              }}
+              className={`absolute bg-red-500
+          } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+              <MdDelete />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <input

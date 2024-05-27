@@ -15,7 +15,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
   function handleAddInput() {
     let newInps = {
       iddd: equipments.length + 1,
-      name: "اسم المعدة",
+      // name: "اسم المعدة",
       type: "نوع المعدة",
       amount: 3,
       namedDriver: "اسم السائق",
@@ -29,7 +29,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
       if (ele.iddd == item.iddd) {
         let newItem = {
           ...ele,
-          name: nameOfEquipments,
+          // name: nameOfEquipments,
           type: typeOfEquipments,
           amount: amountOfGas,
           namedDriver: carDriver,
@@ -52,7 +52,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
     <div className="flex-col flex  mb-10  w-full">
       <label className="w-full mb-5"> المعدات</label>
       <div className="w-full mb-4 relative grid md:grid-cols-4 grid-cols-2 gap-2">
-        <select
+        {/* <select
           value={nameOfEquipments}
           onChange={(e) => {
             setNameOfEquipments(e.target.value);
@@ -66,7 +66,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
               </>
             );
           })}
-        </select>
+        </select> */}
         <select
           value={typeOfEquipments}
           onChange={(e) => {
@@ -114,14 +114,18 @@ const Equipments = ({ equipments, setEquipments, item }) => {
           }  w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
           تم
         </div>
-        <div
-          onClick={() => {
-            handleDel(item);
-          }}
-          className={`absolute bg-red-500
-            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
-          <MdDelete />
-        </div>
+        {equipments.length > 1 ? (
+          <div
+            onClick={() => {
+              handleDel(item);
+            }}
+            className={`absolute bg-red-500
+          } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+            <MdDelete />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <input
         value={EquipmentsTextArea}

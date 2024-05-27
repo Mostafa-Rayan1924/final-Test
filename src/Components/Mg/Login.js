@@ -13,7 +13,7 @@ const Login = () => {
   let navigate = useNavigate();
   let { auth, setAuth } = useContext(authContext);
   let [formInputs, setFormInputs] = useState({
-    name: "ElsayedAhmed@gmail.com",
+    name: "elsayedahmed5000654@gmail.com",
     password: "test1234",
   });
   // send login
@@ -47,6 +47,8 @@ const Login = () => {
             ? "dailyTaskSend"
             : response.data.data.result.role == "مكتب فني"
             ? "weeklyTask"
+            : response.data.data.result.role == "الادارة"
+            ? "review"
             : "dailyTask";
         navigate(`/mgsystem/dashboard/${go}`);
       })

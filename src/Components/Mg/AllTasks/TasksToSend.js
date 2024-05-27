@@ -28,6 +28,7 @@ const TasksToSend = ({ makeDone = false }) => {
       )
       .then((res) => {
         setDataName(res.data.Data);
+        console.log(res.data.Data);
       })
       .catch((error) => {
         console.log(error);

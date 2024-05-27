@@ -20,9 +20,11 @@ import TasksToMake from "./Components/Mg/AllTasks/TasksToMake";
 import TasksToSend from "./Components/Mg/AllTasks/TasksToSend";
 import AllTasks from "./Components/Mg/AllTasks/AllTask";
 import Chats from "./Components/Mg/Chats";
+import Review from "./Components/Mg/Review";
 import { ChatContextProvider } from "./contexts/CurrentClickChat";
 import { ChatConvIdProvider } from "./contexts/ConversationId";
 import { useLocation } from "react-router-dom";
+import AllReview from "./Components/Mg/AllReview";
 
 export default function App() {
   let [themes, setThemes] = useState(false);
@@ -62,6 +64,8 @@ export default function App() {
                       <Route path="sendTasks" element={<TasksToSend />} />
                       <Route path="allTasks" element={<AllTasks />} />
                       <Route path="chats" element={<Chats />} />
+                      <Route path="review" element={<Review />} />
+                      <Route path="allReview" element={<AllReview />} />
                     </Route>
                   </Route>
                 </Route>

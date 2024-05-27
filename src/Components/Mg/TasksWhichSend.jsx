@@ -10,6 +10,7 @@ const TasksWhichSend = ({
   apiUrl,
   filterTask,
   apiFilterByName,
+  cat,
   showFilterByName = true,
 }) => {
   // maping in names to filter by it
@@ -30,9 +31,12 @@ const TasksWhichSend = ({
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     axios
-      .get(`https://mg-company.onrender.com/mg/reports/${apiUrl}`, {
-        headers: headers,
-      })
+      .get(
+        `https://mg-company.onrender.com/mg/reports/${apiUrl}?category=${cat}`,
+        {
+          headers: headers,
+        }
+      )
       .then((res) => {
         setLoad(false);
         setAllTasksGet(res.data.data.result);

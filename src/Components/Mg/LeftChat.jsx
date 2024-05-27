@@ -12,6 +12,7 @@ import { io } from "socket.io-client";
 const LeftChat = () => {
   let { currentChat } = useContext(CurrentChatContext);
   let { convId, setConvId } = useContext(ConvIdChatContext);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   let ScrollRef = useRef();
   let { auth } = useContext(authContext);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -20,24 +21,30 @@ const LeftChat = () => {
   let [messages, setMessages] = useState([]);
   let [waitMsg, setWaitMsg] = useState(false);
   //  get messages
-  let getMessages = () => {
-    if (currentChat !== "") {
-      let headers = {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      };
-      axios
-        .get(`https://mg-company.onrender.com/mg/chat/message/${convId._id}`, {
-          headers: headers,
-        })
-        .then(function (response) {
-          setMessages(response.data.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-  };
+  useEffect(() => {
+    let getMessages = () => {
+      if (currentChat !== "") {
+        let headers = {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        };
+        axios
+          .get(
+            `https://mg-company.onrender.com/mg/chat/message/${convId._id}`,
+            {
+              headers: headers,
+            }
+          )
+          .then(function (response) {
+            setMessages(response.data.data);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      }
+    };
+    getMessages();
+  }, [convId]);
 
   let msgMap = messages.map((item) => {
     return (
@@ -51,7 +58,6 @@ const LeftChat = () => {
   // connect to server io and get messages
   useEffect(() => {
     socket.current = io("https://mg-company.onrender.com");
-
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -62,16 +68,16 @@ const LeftChat = () => {
   }, []);
   useEffect(() => {
     arrivalMessage &&
-      convId?.members?.includes(auth.user._id) &&
+      convId?.members.includes(auth.user._id) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, convId]);
   useEffect(() => {
     socket.current?.emit("addUser", auth?.user?._id);
-    // socket.current?.emit("addUser", currentChat?._id);
   }, [auth]);
-  useEffect(() => {
-    getMessages();
-  }, [convId]);
+  // console.log(convId);
+  // useEffect(() => {
+  //   getMessages();
+  // }, [convId]);
   //  scroll to the end of the chat
   useEffect(() => {
     ScrollRef.current?.scrollIntoView({ behavior: "smooth" });
