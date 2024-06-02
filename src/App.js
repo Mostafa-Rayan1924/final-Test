@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Pages/Home";
 import Services from "./Pages/Services";
 import Projects from "./Pages/Projects";
@@ -23,12 +23,12 @@ import Chats from "./Components/Mg/Chats";
 import Review from "./Components/Mg/Review";
 import { ChatContextProvider } from "./contexts/CurrentClickChat";
 import { ChatConvIdProvider } from "./contexts/ConversationId";
-import { useLocation } from "react-router-dom";
 import AllReview from "./Components/Mg/AllReview";
 
 export default function App() {
-  let [themes, setThemes] = useState(false);
+  const [themes, setThemes] = useState(false);
   const location = useLocation();
+
   useEffect(() => {
     if (location.pathname.includes("mgsystem")) {
       document.body.classList.remove("dark");
@@ -36,45 +36,82 @@ export default function App() {
   }, [location]);
 
   return (
-    <>
-      <ChatConvIdProvider>
-        <ChatContextProvider>
-          <AuthContextProvider>
-            <Theme.Provider value={{ themes, setThemes }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:proid" element={<ProDetails />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                {/* route for system */}
-                <Route path="/mgsystem">
-                  <Route path="login" element={<Login />} />
-                  <Route element={<RequireAuth />}>
-                    <Route path="dashboard" element={<Dashboard />}>
-                      <Route path="dailyTask" element={<DailyTask />} />
+    <ChatConvIdProvider>
+      <ChatContextProvider>
+        <AuthContextProvider>
+          <Theme.Provider value={{ themes, setThemes }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:proid" element={<ProDetails />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+
+              {/* Route for system */}
+              <Route path="/mgsystem">
+                <Route path="login" element={<Login />} />
+                <Route
+                  element={
+                    <RequireAuth
+                      allowedRole={[
+                        "user",
+                        "admin",
+                        "manager",
+                        "accountant",
+                        "engineer",
+                        "supervisor",
+                        "admin",
+                      ]}
+                    />
+                  }>
+                  <Route path="dashboard" element={<Dashboard />}>
+                    {/* الحصول علي الموقف الاسبوعي واليومي */}
+                    <Route
+                      element={
+                        <RequireAuth
+                          allowedRole={["مدير", "محاسب", "مكتب فني", "الادارة"]}
+                        />
+                      }>
                       <Route path="dailyTaskSend" element={<DailyTaskSend />} />
-                      <Route path="weeklyTask" element={<WeeklyTask />} />
                       <Route
                         path="weeklyTaskSend"
                         element={<WeeklyTaskSend />}
                       />
-                      <Route path="tasks" element={<TasksToMake />} />
+                    </Route>
+                    {/* ارسال طلب وجميع الطلبات */}
+                    <Route
+                      element={
+                        <RequireAuth allowedRole={["مدير", "الادارة"]} />
+                      }>
                       <Route path="sendTasks" element={<TasksToSend />} />
                       <Route path="allTasks" element={<AllTasks />} />
-                      <Route path="chats" element={<Chats />} />
+                    </Route>
+                    <Route path="chats" element={<Chats />} />
+                    {/* موقف يومي واسبوعي وتنفيذ التاسك  */}
+                    <Route
+                      element={
+                        <RequireAuth
+                          allowedRole={["محاسب", "مهندس مدني", "مشرف"]}
+                        />
+                      }>
+                      <Route path="dailyTask" element={<DailyTask />} />
+                      <Route path="weeklyTask" element={<WeeklyTask />} />
+                      <Route path="tasks" element={<TasksToMake />} />
+                    </Route>
+                    {/* الاداره ريفيو */}
+                    <Route element={<RequireAuth allowedRole={["الادارة"]} />}>
                       <Route path="review" element={<Review />} />
                       <Route path="allReview" element={<AllReview />} />
                     </Route>
                   </Route>
                 </Route>
-                <Route path="/*" element={<Error />} />
-              </Routes>
-            </Theme.Provider>
-          </AuthContextProvider>
-        </ChatContextProvider>
-      </ChatConvIdProvider>
-    </>
+                <Route path="*" element={<Error />} />
+              </Route>
+            </Routes>
+          </Theme.Provider>
+        </AuthContextProvider>
+      </ChatContextProvider>
+    </ChatConvIdProvider>
   );
 }

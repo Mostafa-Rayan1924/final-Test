@@ -15,7 +15,27 @@ const TasksWhichSend = ({
 }) => {
   // maping in names to filter by it
   let [selectNameToFilter, setSelectNameToFilter] = useState("");
-  let [namesByRole, setNamesByRole] = useState(AllnamesByRole);
+  let [namesByRole, setNamesByRole] = useState([]);
+
+  const fetchUsers = () => {
+    let headers = {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    axios
+      .get("https://mg-company.onrender.com/mg/users/getUser", {
+        headers: headers,
+      })
+      .then((res) => {
+        setNamesByRole(res.data.Data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   // get users by role
 
@@ -117,7 +137,7 @@ const TasksWhichSend = ({
                       <option key={item} className="hidden">
                         اختر الاسم
                       </option>
-                      <option>{item}</option>
+                      <option>{item.name}</option>
                     </>
                   );
                 })}

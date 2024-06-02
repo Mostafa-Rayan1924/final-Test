@@ -6,8 +6,9 @@ import axios from "axios";
 import { authContext } from "../../contexts/Auth";
 const RightChat = () => {
   let { currentChat } = useContext(CurrentChatContext);
-  let [users, setUsers] = useState([]);
   let { auth } = useContext(authContext);
+
+  let [users, setUsers] = useState([]);
   const fetchUsers = () => {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,

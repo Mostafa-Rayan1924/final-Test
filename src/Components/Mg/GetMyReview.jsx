@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 
 const GetMyReview = ({ item }) => {
-  console.log(item);
   return (
     <>
       <div className="mb-10 shadow p-4  rounded-lg transition-all duration-300 bg-slate-100 border-b-4 border-b-transparent hover:border-sky-500 ">
