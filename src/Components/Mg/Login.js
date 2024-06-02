@@ -8,7 +8,6 @@ import { authContext } from "../../contexts/Auth";
 // import to sweet alert
 import Swal from "sweetalert2";
 const Login = () => {
-  // variables
   let [load, setLoad] = useState(false);
   let navigate = useNavigate();
   let { auth, setAuth } = useContext(authContext);

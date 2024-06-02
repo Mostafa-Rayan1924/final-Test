@@ -47,67 +47,59 @@ export default function App() {
               <Route path="/projects/:proid" element={<ProDetails />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-
               {/* Route for system */}
-              <Route path="/mgsystem">
-                <Route path="login" element={<Login />} />
-                <Route
-                  element={
-                    <RequireAuth
-                      allowedRole={[
-                        "user",
-                        "admin",
-                        "manager",
-                        "accountant",
-                        "engineer",
-                        "supervisor",
-                        "admin",
-                      ]}
-                    />
-                  }>
-                  <Route path="dashboard" element={<Dashboard />}>
-                    {/* الحصول علي الموقف الاسبوعي واليومي */}
-                    <Route
-                      element={
-                        <RequireAuth
-                          allowedRole={["مدير", "محاسب", "مكتب فني", "الادارة"]}
-                        />
-                      }>
-                      <Route path="dailyTaskSend" element={<DailyTaskSend />} />
-                      <Route
-                        path="weeklyTaskSend"
-                        element={<WeeklyTaskSend />}
+              <Route path="/mgsystem/login" element={<Login />} />
+              <Route
+                element={
+                  <RequireAuth
+                    allowedRole={[
+                      "user",
+                      "admin",
+                      "manager",
+                      "accountant",
+                      "engineer",
+                      "supervisor",
+                      "admin",
+                    ]}
+                  />
+                }>
+                <Route path="/mgsystem/dashboard" element={<Dashboard />}>
+                  {/* الحصول علي الموقف الاسبوعي واليومي */}
+                  <Route
+                    element={
+                      <RequireAuth
+                        allowedRole={["مدير", "محاسب", "مكتب فني", "الادارة"]}
                       />
-                    </Route>
-                    {/* ارسال طلب وجميع الطلبات */}
-                    <Route
-                      element={
-                        <RequireAuth allowedRole={["مدير", "الادارة"]} />
-                      }>
-                      <Route path="sendTasks" element={<TasksToSend />} />
-                      <Route path="allTasks" element={<AllTasks />} />
-                    </Route>
-                    <Route path="chats" element={<Chats />} />
-                    {/* موقف يومي واسبوعي وتنفيذ التاسك  */}
-                    <Route
-                      element={
-                        <RequireAuth
-                          allowedRole={["محاسب", "مهندس مدني", "مشرف"]}
-                        />
-                      }>
-                      <Route path="dailyTask" element={<DailyTask />} />
-                      <Route path="weeklyTask" element={<WeeklyTask />} />
-                      <Route path="tasks" element={<TasksToMake />} />
-                    </Route>
-                    {/* الاداره ريفيو */}
-                    <Route element={<RequireAuth allowedRole={["الادارة"]} />}>
-                      <Route path="review" element={<Review />} />
-                      <Route path="allReview" element={<AllReview />} />
-                    </Route>
+                    }>
+                    <Route path="dailyTaskSend" element={<DailyTaskSend />} />
+                    <Route path="weeklyTaskSend" element={<WeeklyTaskSend />} />
+                  </Route>
+                  {/* ارسال طلب وجميع الطلبات */}
+                  <Route
+                    element={<RequireAuth allowedRole={["مدير", "الادارة"]} />}>
+                    <Route path="sendTasks" element={<TasksToSend />} />
+                    <Route path="allTasks" element={<AllTasks />} />
+                  </Route>
+                  <Route path="chats" element={<Chats />} />
+                  {/* موقف يومي واسبوعي وتنفيذ التاسك  */}
+                  <Route
+                    element={
+                      <RequireAuth
+                        allowedRole={["محاسب", "مهندس مدني", "مشرف"]}
+                      />
+                    }>
+                    <Route path="dailyTask" element={<DailyTask />} />
+                    <Route path="weeklyTask" element={<WeeklyTask />} />
+                    <Route path="tasks" element={<TasksToMake />} />
+                  </Route>
+                  {/* الاداره ريفيو */}
+                  <Route element={<RequireAuth allowedRole={["الادارة"]} />}>
+                    <Route path="review" element={<Review />} />
+                    <Route path="allReview" element={<AllReview />} />
                   </Route>
                 </Route>
-                <Route path="*" element={<Error />} />
               </Route>
+              <Route path="*" element={<Error />} />
             </Routes>
           </Theme.Provider>
         </AuthContextProvider>
