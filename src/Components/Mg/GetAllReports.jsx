@@ -63,9 +63,6 @@ const GetAllReports = ({ item }) => {
             </h2>
             <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
               <p className="text-[#666666B2] font-bold mb-2 text-lg">
-                <span className="text-black">اسم المعده :</span> {ele.name}
-              </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
                 <span className="text-black">نوع المعده :</span> {ele.type}
               </p>
               <p className="text-[#666666B2] font-bold mb-2 text-lg">
