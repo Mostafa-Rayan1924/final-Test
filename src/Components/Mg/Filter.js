@@ -13,8 +13,8 @@ const Filter = ({ inpDate, handleFilter, getAllTasks, setInpDate }) => {
       />
       <button
         onClick={getAllTasks}
-        className="bg-yellow-400 font-bold w-full sm:w-fit  text-white rounded p-2">
-        امسح البحث
+        className="bg-green-400 hover:bg-green-500 font-bold w-full sm:w-fit  text-white rounded p-2">
+        اليوم الحالي
       </button>
     </div>
   );

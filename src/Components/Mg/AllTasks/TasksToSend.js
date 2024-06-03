@@ -110,7 +110,7 @@ const TasksToSend = ({ makeDone = false }) => {
               }}
               onInput={handleData}
               className="text-stone-400 text-lg font-normal  w-[200px] h-[38px] focus:outline-none  pr-1.5  bg-white rounded-lg border border-neutral-400">
-              <option className="hidden cursor-not-allowed">اختار الاسم</option>
+              <option className="hidden cursor-not-allowed">اختار الفئة</option>
               <option>مهندس مدني</option>
               <option>مشرف</option>
               <option>محاسب</option>
