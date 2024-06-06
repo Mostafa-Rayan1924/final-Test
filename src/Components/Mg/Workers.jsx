@@ -6,7 +6,9 @@ const Workers = ({ workers, setWorkers, item }) => {
   let [OkState, setOkstate] = useState(false);
   let [workersTextArea, setWorkersTextArea] = useState("");
   let [workersInpType, setWorkersInpType] = useState("");
-  let [workersInpCount, setWorkersInpCount] = useState(0);
+  let [workersInpCount, setWorkersInpCount] = useState("");
+  let [workersSalary, setWorkersSalary] = useState("");
+
   function handleSave() {
     setOkstate(true);
     let workersEdit = workers.map((ele) => {
@@ -16,6 +18,7 @@ const Workers = ({ workers, setWorkers, item }) => {
           type: workersInpType,
           number: workersInpCount,
           workDid: workersTextArea,
+          salary: workersSalary,
         };
         return newItem;
       } else {
@@ -35,6 +38,7 @@ const Workers = ({ workers, setWorkers, item }) => {
       iddd: workers.length + 1,
       type: "",
       number: "",
+      salary: "",
       workDid: "",
     };
     setWorkers([...workers, newInps]);
@@ -65,6 +69,15 @@ const Workers = ({ workers, setWorkers, item }) => {
               setWorkersInpCount(e.target.value);
             }}
             placeholder="العدد"
+            className="w-full lg:w-1/2 pr-1.5 h-[38px] focus:outline-none bg-white rounded-lg border border-neutral-400"
+            type="number"
+          />
+          <input
+            value={workersSalary}
+            onChange={(e) => {
+              setWorkersSalary(e.target.value);
+            }}
+            placeholder="سعر اليومية"
             className="w-full lg:w-1/2 pr-1.5 h-[38px] focus:outline-none bg-white rounded-lg border border-neutral-400"
             type="number"
           />

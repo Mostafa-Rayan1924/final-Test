@@ -327,7 +327,7 @@ const ShowElements = () => {
               الموقف اليومي المرسل
             </span>
           </NavLink>
-          <NavLink style={navActive} to={"tasks"} className={"flex gap-2 mt-5"}>
+          <NavLink style={navActive} to={"tasks"} className={"flex gap-2 my-5"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -499,7 +499,10 @@ const ShowElements = () => {
             </svg>
             <span className="  md:text-[18px] lg:text-base">جميع التقيمات</span>
           </NavLink>
-          <NavLink style={navActive} to={"chats"} className={"flex  gap-2"}>
+          <NavLink
+            style={navActive}
+            to={"chats"}
+            className={"flex mt-5  gap-2"}>
             <IoChatbubbleEllipsesOutline size={24} height={27} />
             <span className="  md:text-[18px] lg:text-base ">المحادثات</span>
           </NavLink>

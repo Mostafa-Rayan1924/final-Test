@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 const Equipments = ({ equipments, setEquipments, item }) => {
   // states for tawredat
   let [OkState, setOkstate] = useState(false);
-  let [nameOfEquipments, setNameOfEquipments] = useState("");
+  let [salary, setSalary] = useState("");
   let [typeOfEquipments, settypeOfEquipments] = useState("");
   let [amountOfGas, setAmountOfGas] = useState("");
   let [carDriver, setCarDriver] = useState("");
@@ -15,7 +15,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
   function handleAddInput() {
     let newInps = {
       iddd: equipments.length + 1,
-      // name: "اسم المعدة",
+      salary: "سعر المعده",
       type: "نوع المعدة",
       amount: 3,
       namedDriver: "اسم السائق",
@@ -29,7 +29,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
       if (ele.iddd == item.iddd) {
         let newItem = {
           ...ele,
-          // name: nameOfEquipments,
+          salary: salary,
           type: typeOfEquipments,
           amount: amountOfGas,
           namedDriver: carDriver,
@@ -52,21 +52,6 @@ const Equipments = ({ equipments, setEquipments, item }) => {
     <div className="flex-col flex  mb-10  w-full">
       <label className="w-full mb-5"> المعدات</label>
       <div className="w-full mb-4 relative grid md:grid-cols-4 grid-cols-2 gap-2">
-        {/* <select
-          value={nameOfEquipments}
-          onChange={(e) => {
-            setNameOfEquipments(e.target.value);
-          }}
-          className="  h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400">
-          {nameOfEquip.map((item) => {
-            return (
-              <>
-                <option className="hidden">اسم المعده</option>
-                <option key={item}>{item}</option>
-              </>
-            );
-          })}
-        </select> */}
         <select
           value={typeOfEquipments}
           onChange={(e) => {
@@ -83,6 +68,14 @@ const Equipments = ({ equipments, setEquipments, item }) => {
             );
           })}
         </select>
+        <input
+          placeholder="اجمالي سعر المعده"
+          type="number"
+          value={salary}
+          onChange={(e) => {
+            salary(e.target.value);
+          }}
+          className="h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400"></input>
         <input
           placeholder="كميه الغاز "
           type="number"

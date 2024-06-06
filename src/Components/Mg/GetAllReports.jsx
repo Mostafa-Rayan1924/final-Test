@@ -10,10 +10,9 @@ const GetAllReports = ({ item }) => {
   const filteredSupplies = item.Supplies.filter(
     (ele) => ele && Object.keys(ele).length > 0
   );
-  console.log(item);
   return (
     <div className="shadow  bg-slate-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
-      <div className="flex md:items-center flex-col md:flex-row gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4">
+      <div className="flex md:items-center flex-col md:flex-row gap-4 md:gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4">
         <div className="flex flex-wrap justify-between gap-4 items-center">
           <h2 className="md:md:text-xl">الشخص المسؤول </h2>
           <p className="text-[#666666B2] font-bold">{item.CreatedBy?.name}</p>
@@ -35,12 +34,19 @@ const GetAllReports = ({ item }) => {
             <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
               العمال
             </h2>
-            <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
-              <p className="text-[#666666B2] font-bold text-lg mb-2">
+            <div className="flex flex-col sm:flex-row mb-5 justify-between gap-4 sm:items-center flex-wrap">
+              <p className="text-[#666666B2] flex justify-between font-bold text-lg mb-2">
                 <span className="text-black">نوع العمال :</span> {ele.type}
               </p>
-              <p className="text-[#666666B2] font-bold text-lg mb-2">
+              <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
                 <span className="text-black"> عدد العمال :</span> {ele.number}
+              </p>
+              <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
+                <span className="text-black"> سعر اليومية :</span>
+              </p>
+              <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
+                <span className="text-black"> اجمالي اليوميات :</span>
+                {Number(ele.number * 1)}
               </p>
             </div>
             <div className="w-full">
@@ -61,14 +67,21 @@ const GetAllReports = ({ item }) => {
             <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
               المعدات
             </h2>
-            <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+            <div className="flex flex-col sm:flex-row mb-5 justify-between gap-4 sm:items-center flex-wrap">
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">نوع المعده :</span> {ele.type}
               </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">العدد :</span> {ele.amount}
               </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
+                <span className="text-black"> سعر المعده :</span> {""}
+              </p>
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
+                <span className="text-black"> اجمالي سعر المعده :</span>{" "}
+                {Number(ele.amount * 1)}
+              </p>
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black"> اسم السائق :</span>{" "}
                 {ele.namedDriver}
               </p>
@@ -92,17 +105,17 @@ const GetAllReports = ({ item }) => {
             <h2 className="text-xl md:text-[40px] text-center mb-[20px]">
               التوريدات
             </h2>
-            <div className="flex mb-5 justify-between gap-4 items-center flex-wrap">
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+            <div className="flex flex-col sm:flex-row mb-5 justify-between gap-4 sm:items-center flex-wrap">
+              {/* <p className="text-[#666666B2] font-bold mb-2 text-lg">
                 <span className="text-black"> اسم المورد :</span> {ele.name}
-              </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+              </p> */}
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">نوع التوريد :</span> {ele.type}
               </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">العدد :</span> {ele.number}
               </p>
-              <p className="text-[#666666B2] font-bold mb-2 text-lg">
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">رقم السيارة :</span>{" "}
                 {ele.carNumber}
               </p>
@@ -116,7 +129,7 @@ const GetAllReports = ({ item }) => {
         ))}
       </div>
       {item.suppliesFile && (
-        <div className="flex flex-wrap items-center my-5 justify-between  border-b pb-4 ">
+        <div className="flex flex-wrap items-center my-5 gap-2 justify-between  border-b pb-4 ">
           <h2 className="md:text-xl">تنزيل ملفات التوريدات</h2>
           <a
             target="_blank"
@@ -176,7 +189,7 @@ const GetAllReports = ({ item }) => {
       {/* End Requirements */}
 
       {item.files && (
-        <div className="flex flex-wrap items-center justify-between">
+        <div className="flex flex-wrap gap-2 items-center justify-between">
           <h2 className="md:text-xl">تنزيل الملفات</h2>
           <a
             target="_blank"
@@ -190,5 +203,4 @@ const GetAllReports = ({ item }) => {
     </div>
   );
 };
-
 export default GetAllReports;
