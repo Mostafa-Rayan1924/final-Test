@@ -43,10 +43,11 @@ const GetAllReports = ({ item }) => {
               </p>
               <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
                 <span className="text-black"> سعر اليومية :</span>
+                {ele.price}
               </p>
               <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
-                <span className="text-black"> اجمالي اليوميات :</span>
-                {Number(ele.number * 1)}
+                <span className="text-black"> اجمالي سعر اليوميات :</span>
+                {Number(ele.number * ele.price)}
               </p>
             </div>
             <div className="w-full">
@@ -75,11 +76,11 @@ const GetAllReports = ({ item }) => {
                 <span className="text-black">العدد :</span> {ele.amount}
               </p>
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
-                <span className="text-black"> سعر المعده :</span> {""}
+                <span className="text-black"> سعر المعده :</span> {ele.price}
               </p>
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black"> اجمالي سعر المعده :</span>{" "}
-                {Number(ele.amount * 1)}
+                {Number(ele.amount * ele.price)}
               </p>
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black"> اسم السائق :</span>{" "}

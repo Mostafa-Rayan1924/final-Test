@@ -15,7 +15,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
   function handleAddInput() {
     let newInps = {
       iddd: equipments.length + 1,
-      salary: "سعر المعده",
+      price: "سعر المعده",
       type: "نوع المعدة",
       amount: 3,
       namedDriver: "اسم السائق",
@@ -29,7 +29,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
       if (ele.iddd == item.iddd) {
         let newItem = {
           ...ele,
-          salary: salary,
+          price: salary,
           type: typeOfEquipments,
           amount: amountOfGas,
           namedDriver: carDriver,
@@ -73,7 +73,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
           type="number"
           value={salary}
           onChange={(e) => {
-            salary(e.target.value);
+            setSalary(e.target.value);
           }}
           className="h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400"></input>
         <input

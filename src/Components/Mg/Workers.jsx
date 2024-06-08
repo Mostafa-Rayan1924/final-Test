@@ -18,7 +18,7 @@ const Workers = ({ workers, setWorkers, item }) => {
           type: workersInpType,
           number: workersInpCount,
           workDid: workersTextArea,
-          salary: workersSalary,
+          price: workersSalary,
         };
         return newItem;
       } else {
@@ -38,7 +38,7 @@ const Workers = ({ workers, setWorkers, item }) => {
       iddd: workers.length + 1,
       type: "",
       number: "",
-      salary: "",
+      price: "",
       workDid: "",
     };
     setWorkers([...workers, newInps]);

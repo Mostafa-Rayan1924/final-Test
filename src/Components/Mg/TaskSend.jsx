@@ -167,6 +167,7 @@ const TaskSend = ({ title, apiUrl }) => {
         }
       )
       .then((res) => {
+        // console.log(res.data.data);
         setProjects(res.data.data.result);
       })
       .catch((error) => {
