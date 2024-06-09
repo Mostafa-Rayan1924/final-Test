@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { dataOftype } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
 
@@ -12,7 +12,7 @@ const Workers = ({ workers, setWorkers, item }) => {
   function handleSave() {
     setOkstate(true);
     let workersEdit = workers.map((ele) => {
-      if (ele.iddd == item.iddd) {
+      if (ele.iddd === item.iddd) {
         let newItem = {
           ...ele,
           type: workersInpType,
@@ -27,12 +27,14 @@ const Workers = ({ workers, setWorkers, item }) => {
     });
     setWorkers(workersEdit);
   }
+
   function handleDel() {
     let workersDel = workers.filter((ele) => {
       return ele.iddd !== item.iddd;
     });
     setWorkers(workersDel);
   }
+
   function handleAddInput() {
     let newInps = {
       iddd: workers.length + 1,
@@ -43,6 +45,13 @@ const Workers = ({ workers, setWorkers, item }) => {
     };
     setWorkers([...workers, newInps]);
   }
+
+  useEffect(() => {
+    if (OkState) {
+      setOkstate(false);
+    }
+  }, [workersTextArea, workersInpType, workersInpCount, workersSalary]);
+
   return (
     <div>
       <div className="flex  relative  flex-col md:flex-row  gap-3 md:items-center justify-between mb-4   w-full">
@@ -83,25 +92,20 @@ const Workers = ({ workers, setWorkers, item }) => {
           />
           <div
             onClick={handleAddInput}
-            className=" absolute bg-blue-500 w-8 h-8  rounded-full cursor-pointer  grid place-items-center text-white text-2xl left-10  -top-10 md:top-0 md:-left-10">
+            className="absolute bg-blue-500 w-8 h-8 rounded-full cursor-pointer grid place-items-center text-white text-2xl left-10 -top-10 md:top-0 md:-left-10">
             +
           </div>
           <div
-            onClick={() => {
-              handleSave(item);
-            }}
+            onClick={handleSave}
             className={`absolute ${
               OkState ? "bg-green-500" : "bg-yellow-500"
-            } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-0 -top-10   md:top-0 md:-left-20 `}>
+            } w-8 h-8 rounded-full cursor-pointer grid place-items-center text-white left-0 -top-10 md:top-0 md:-left-20`}>
             تم
           </div>
           {workers.length > 1 ? (
             <div
-              onClick={() => {
-                handleDel(item);
-              }}
-              className={`absolute bg-red-500
-          } w-8 h-8  rounded-full cursor-pointer grid place-items-center text-white  left-20 -top-10   md:top-10 md:-left-[60px] `}>
+              onClick={handleDel}
+              className={`absolute bg-red-500 w-8 h-8 rounded-full cursor-pointer grid place-items-center text-white left-20 -top-10 md:top-10 md:-left-[60px]`}>
               <MdDelete />
             </div>
           ) : (
@@ -114,7 +118,7 @@ const Workers = ({ workers, setWorkers, item }) => {
         onChange={(e) => {
           setWorkersTextArea(e.target.value);
         }}
-        className=" w-full mx-auto mb-10  h-[150px]  pr-1.5  focus:outline-none bg-white rounded-lg border border-neutral-400"
+        className="w-full mx-auto mb-10 h-[150px] pr-1.5 focus:outline-none bg-white rounded-lg border border-neutral-400"
         type="text"
         placeholder="الاعمال التي قاموا بها"
       />

@@ -9,33 +9,21 @@ import Eltawredat from "./Eltawredat";
 import { useLocation } from "react-router-dom";
 import Equipments from "./Equipments";
 import { authContext } from "../../contexts/Auth";
-// end of imports
+
 const TaskSend = ({ title, apiUrl }) => {
   let [load, setLoad] = useState(false);
   let { auth, setAuth } = useContext(authContext);
-  // to get all projects
-  let [proName, setProName] = useState("");
-  let [projects, setProjects] = useState([]);
-  const location = useLocation();
-  let [cat, setCat] = useState("");
-  useEffect(() => {
-    if (location?.pathname?.includes("dailyTask")) {
-      setCat("Daily");
-    } else {
-      setCat("Weekly");
-    }
-  }, [location]);
-  // to get all   workers
-  let [workers, setWorkers] = useState([
+
+  // Initial states
+  const initialWorkers = [
     {
       iddd: 1,
       type: "",
       number: "",
       workDid: "",
     },
-  ]);
-  // to get all   tawredat
-  let [tawredat, setTawerdat] = useState([
+  ];
+  const initialTawredat = [
     {
       iddd: 1,
       name: "",
@@ -44,9 +32,8 @@ const TaskSend = ({ title, apiUrl }) => {
       carNumber: "",
       supplies: "",
     },
-  ]);
-  // to get all   Equipments
-  let [equipments, setEquipments] = useState([
+  ];
+  const initialEquipments = [
     {
       iddd: 1,
       name: "",
@@ -55,59 +42,52 @@ const TaskSend = ({ title, apiUrl }) => {
       namedDriver: "",
       workDid: "",
     },
-  ]);
-  // الاعمال التي تم انجازها وتسلمها
+  ];
+
+  let [proName, setProName] = useState("");
+  let [projects, setProjects] = useState([]);
+  const location = useLocation();
+  let [cat, setCat] = useState("");
+
+  let [workers, setWorkers] = useState(initialWorkers);
+  let [tawredat, setTawerdat] = useState(initialTawredat);
+  let [equipments, setEquipments] = useState(initialEquipments);
   let [okAndDone, setOkAndDone] = useState("");
-  // الاعمال التي تم انجازها
   let [ok, setOk] = useState("");
-  // المعوقات
   let [Iobstacles, setIObstacles] = useState("");
   let [Eobstacles, setEObstacles] = useState("");
-  // reqiurments
   let [reqiurments, setReqiurments] = useState("");
-  //  file
   let [file, setFile] = useState([]);
   let [fileTawredat, setFileTawredat] = useState([]);
 
-  // maping boxes which have select box and + elements
-  let workersMap = workers.map((item) => {
-    return (
-      <Workers
-        key={item.id}
-        item={item}
-        workers={workers}
-        setWorkers={setWorkers}
-      />
-    );
-  });
+  useEffect(() => {
+    if (location?.pathname?.includes("dailyTask")) {
+      setCat("Daily");
+    } else {
+      setCat("Weekly");
+    }
+  }, [location]);
 
-  let tawredatMap = tawredat.map((item) => {
-    return (
-      <Eltawredat
-        key={item.id}
-        item={item}
-        tawredat={tawredat}
-        setTawerdat={setTawerdat}
-      />
-    );
-  });
-  let equipmentsMap = equipments.map((item) => {
-    return (
-      <Equipments
-        item={item}
-        equipments={equipments}
-        setEquipments={setEquipments}
-      />
-    );
-  });
+  const resetFields = () => {
+    setProName("");
+    setWorkers(initialWorkers);
+    setTawerdat(initialTawredat);
+    setEquipments(initialEquipments);
+    setOkAndDone("");
+    setOk("");
+    setIObstacles("");
+    setEObstacles("");
+    setReqiurments("");
+    setFile([]);
+    setFileTawredat([]);
+  };
 
-  let handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     setLoad(true);
     e.preventDefault();
     let formdata = new FormData();
     formdata.append("ProjectName", proName);
     formdata.append("Equipments", JSON.stringify(equipments));
-    // formdata.append("SuppliesFile", fileTawredat);
     formdata.append("Supplies", JSON.stringify(tawredat));
     formdata.append("Employee", JSON.stringify(workers));
     formdata.append("WorkCompleted", ok);
@@ -138,12 +118,12 @@ const TaskSend = ({ title, apiUrl }) => {
       .then((res) => {
         console.log(res.data);
         setLoad(false);
-
         Swal.fire({
           icon: "success",
           title: "OKay...",
           text: "تم ارسال التقرير بنجاح",
         });
+        resetFields();
       })
       .catch((error) => {
         setLoad(false);
@@ -154,8 +134,8 @@ const TaskSend = ({ title, apiUrl }) => {
         });
       });
   };
-  // get names of project
-  let getProjects = () => {
+
+  const getProjects = () => {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
@@ -167,16 +147,48 @@ const TaskSend = ({ title, apiUrl }) => {
         }
       )
       .then((res) => {
-        // console.log(res.data.data);
         setProjects(res.data.data.result);
       })
       .catch((error) => {
         console.log(error.response?.data?.message);
       });
   };
+
   useEffect(() => {
     getProjects();
   }, []);
+
+  let workersMap = workers.map((item) => {
+    return (
+      <Workers
+        key={item.id}
+        item={item}
+        workers={workers}
+        setWorkers={setWorkers}
+      />
+    );
+  });
+
+  let tawredatMap = tawredat.map((item) => {
+    return (
+      <Eltawredat
+        key={item.id}
+        item={item}
+        tawredat={tawredat}
+        setTawerdat={setTawerdat}
+      />
+    );
+  });
+
+  let equipmentsMap = equipments.map((item) => {
+    return (
+      <Equipments
+        item={item}
+        equipments={equipments}
+        setEquipments={setEquipments}
+      />
+    );
+  });
 
   return (
     <>
@@ -192,7 +204,6 @@ const TaskSend = ({ title, apiUrl }) => {
           onSubmit={handleSubmit}
           className="my-10 flex flex-col justify-center items-center w-[95%]  md:w-[80%]">
           {/* اسم المشروع */}
-
           <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2">اسم المشروع</label>
             <select
@@ -204,13 +215,9 @@ const TaskSend = ({ title, apiUrl }) => {
               type="text"
               placeholder="اسم المشروع">
               <option className="hidden">اختر المشروع</option>
-              {projects?.map((item) => {
-                return (
-                  <>
-                    <option>{item?.projectName}</option>
-                  </>
-                );
-              })}
+              {projects?.map((item) => (
+                <option key={item?.id}>{item?.projectName}</option>
+              ))}
             </select>
           </div>
           {/*  ألعمال */}
@@ -234,7 +241,6 @@ const TaskSend = ({ title, apiUrl }) => {
                 id="fileUploads"
                 multiple
               />
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"
@@ -336,7 +342,6 @@ const TaskSend = ({ title, apiUrl }) => {
                 id="fileUpload"
                 multiple
               />
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"

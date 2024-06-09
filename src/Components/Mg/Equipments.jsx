@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TypeOfEquips } from "../dataOfSelectBox";
 import { nameOfEquip } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
@@ -10,6 +10,7 @@ const Equipments = ({ equipments, setEquipments, item }) => {
   let [typeOfEquipments, settypeOfEquipments] = useState("");
   let [amountOfGas, setAmountOfGas] = useState("");
   let [carDriver, setCarDriver] = useState("");
+  let [amount, setAmount] = useState("");
   let [EquipmentsTextArea, setEquipmentsTextArea] = useState("");
 
   function handleAddInput() {
@@ -23,6 +24,12 @@ const Equipments = ({ equipments, setEquipments, item }) => {
     };
     setEquipments([...equipments, newInps]);
   }
+  useEffect(() => {
+    if (OkState) {
+      setOkstate(false);
+    }
+  }, [typeOfEquipments, amountOfGas, EquipmentsTextArea, salary]);
+
   function handleSave(item) {
     setOkstate(true);
     let equipmentsEdit = equipments.map((ele) => {

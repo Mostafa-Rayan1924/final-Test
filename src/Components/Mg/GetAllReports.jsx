@@ -1,4 +1,3 @@
-import React from "react";
 const GetAllReports = ({ item }) => {
   // Filter out empty arrays
   const filteredEmployees = item.Employee.filter(
@@ -47,12 +46,14 @@ const GetAllReports = ({ item }) => {
               </p>
               <p className="text-[#666666B2] font-bold flex justify-between text-lg mb-2">
                 <span className="text-black"> اجمالي سعر اليوميات :</span>
-                {Number(ele.number * ele.price)}
+                {ele.number !== null && ele.price !== null
+                  ? Number(ele.number * ele.price)
+                  : 0}
               </p>
             </div>
             <div className="w-full">
               <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
-              <p className="text-[#666666B2] font-bold text-[18px]">
+              <p className="text-[#666666B2] break-words font-bold text-[18px]">
                 {ele.workDid}
               </p>
             </div>
@@ -72,24 +73,21 @@ const GetAllReports = ({ item }) => {
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black">نوع المعده :</span> {ele.type}
               </p>
+
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
-                <span className="text-black">العدد :</span> {ele.amount}
+                <span className="text-black"> اجمالي سعر المعده :</span>
+                {ele.price}
               </p>
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
-                <span className="text-black"> سعر المعده :</span> {ele.price}
-              </p>
-              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
-                <span className="text-black"> اجمالي سعر المعده :</span>{" "}
-                {Number(ele.amount * ele.price)}
-              </p>
-              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
-                <span className="text-black"> اسم السائق :</span>{" "}
+                <span className="text-black"> اسم السائق :</span>
                 {ele.namedDriver}
               </p>
             </div>
 
             <div className="w-full">
-              <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
+              <h2 className="md:text-xl mb-2 break-words">
+                الاعمال التي قاموا بها
+              </h2>
               <p className="text-[#666666B2] font-bold text-[18px]">
                 {ele.workDid}
               </p>
@@ -123,7 +121,9 @@ const GetAllReports = ({ item }) => {
             </div>
 
             <div className="w-full">
-              <h2 className="md:text-xl mb-2">الاعمال التي قاموا بها</h2>
+              <h2 className="md:text-xl mb-2 break-words">
+                الاعمال التي قاموا بها
+              </h2>
               <p className="text-[#666666B2] text-[18px]">{ele.supplies}</p>
             </div>
           </div>
@@ -146,7 +146,7 @@ const GetAllReports = ({ item }) => {
       {/* Work Delivered */}
       <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
         <h2 className="md:text-xl">الاعمال التي تم انجازها وتسلمها</h2>
-        <p className="text-[#666666B2] font-bold">
+        <p className="text-[#666666B2] font-bold break-words">
           {item.WorkDelivered !== "" ? item.WorkDelivered : "لا يوجد"}
         </p>
       </div>
@@ -156,7 +156,7 @@ const GetAllReports = ({ item }) => {
       <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
         <h2 className="md:text-xl">الاعمال التي تم انجازها </h2>
 
-        <p className="text-[#666666B2] font-bold">
+        <p className="text-[#666666B2] font-bold break-words">
           {item.WorkCompleted !== "" ? item.WorkCompleted : "لا يوجد"}
         </p>
       </div>
@@ -165,7 +165,7 @@ const GetAllReports = ({ item }) => {
       {/* Internal Obstacles */}
       <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
         <h2 className="md:text-xl">المعوقات الداخلية </h2>
-        <p className="text-[#666666B2] font-bold">
+        <p className="text-[#666666B2] font-bold break-words">
           {item.InternalObstacles !== "" ? item.InternalObstacles : "لا يوجد"}
         </p>
       </div>
@@ -174,7 +174,7 @@ const GetAllReports = ({ item }) => {
       {/* External Obstacles */}
       <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
         <h2 className="md:text-xl">المعوقات الخارجية </h2>
-        <p className="text-[#666666B2] font-bold">
+        <p className="text-[#666666B2] font-bold break-words">
           {item.ExternalObstacles !== "" ? item.ExternalObstacles : "لا يوجد"}
         </p>
       </div>
@@ -183,7 +183,7 @@ const GetAllReports = ({ item }) => {
       {/* Requirements */}
       <div className="flex flex-wrap justify-between gap-4 border-b pb-2 items-center mb-5">
         <h2 className="md:text-xl">المتطلبات</h2>
-        <p className="text-[#666666B2] font-bold">
+        <p className="text-[#666666B2] font-bold break-words">
           {item.Requirements !== "" ? item.Requirements : "لا يوجد"}
         </p>
       </div>

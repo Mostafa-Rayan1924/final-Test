@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TypeOfMowardeen } from "../dataOfSelectBox";
 import { nameOfMowardeen } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
@@ -24,6 +24,11 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
     };
     setTawerdat([...tawredat, newInps]);
   }
+  useEffect(() => {
+    if (OkState) {
+      setOkstate(false);
+    }
+  }, [typeOfMowared, numsOfMowared, carNumber, tawredatTextArea]);
   function handleSave(item) {
     setOkstate(true);
     let TawredatEdit = tawredat.map((ele) => {
