@@ -141,7 +141,9 @@ const TaskSend = ({ title, apiUrl }) => {
     };
     axios
       .get(
-        `https://mg-company.onrender.com/mg/project/?location=${auth?.user?.location}`,
+        `https://mg-company.onrender.com/mg/project/?location=${
+          JSON.parse(localStorage.getItem("user")).location
+        }`,
         {
           headers: headers,
         }
@@ -156,9 +158,6 @@ const TaskSend = ({ title, apiUrl }) => {
 
   useEffect(() => {
     getProjects();
-  }, []);
-  useEffect(() => {
-    window.addEventListener("load", () => {});
   }, []);
   let workersMap = workers.map((item) => {
     return (

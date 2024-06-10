@@ -13,7 +13,7 @@ export let dataOftype = [
 ];
 // export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
 export let TypeOfMowardeen = ["حداده", "سباكة", "نقاشه", "نجاره", "كهرباء"];
-// export let nameOfEquip = ["محمد", "صاصا", "علي"];
+
 export let TypeOfEquips = [
   "جليدر",
   "لودر",
