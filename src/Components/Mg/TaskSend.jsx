@@ -157,7 +157,9 @@ const TaskSend = ({ title, apiUrl }) => {
   useEffect(() => {
     getProjects();
   }, []);
-
+  useEffect(() => {
+    window.addEventListener("load", () => {});
+  }, []);
   let workersMap = workers.map((item) => {
     return (
       <Workers

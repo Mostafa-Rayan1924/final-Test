@@ -52,7 +52,7 @@ const TopBar = () => {
               X
             </span>
             <img
-              className="max-w-full w-16 h-16 bg-black rounded-[16px] object-cover"
+              className="max-w-full w-16 h-16 mt-5 bg-black rounded-[16px] object-cover"
               src={imgProfile}
             />
             <h2 className="text-white text-2xl mt-3 mb-1 font-bold">
@@ -60,7 +60,7 @@ const TopBar = () => {
             </h2>
             <p className="text-gray-600">{auth.user?.role}</p>
 
-            <h3 className="text-stone-500 my-5 ">{auth.user?.email}</h3>
+            <h3 className="text-stone-500 my-2 ">{auth.user?.email}</h3>
             <h3 className="text-white  hidden lg:flex  font-bold my-5">
               القائمه الرئيسية
             </h3>
@@ -72,7 +72,7 @@ const TopBar = () => {
 
             <button
               onClick={handleLogOut}
-              className="px-6 py-2 bg-red-500 text-white rounded-xl my-20">
+              className="px-6 py-2 bg-red-500 text-white rounded-xl my-10">
               Logout
             </button>
           </div>

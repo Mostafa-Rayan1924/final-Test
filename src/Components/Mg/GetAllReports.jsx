@@ -10,7 +10,7 @@ const GetAllReports = ({ item }) => {
     (ele) => ele && Object.keys(ele).length > 0
   );
   return (
-    <div className="shadow  bg-slate-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
+    <div className="shadow  odd:bg-slate-50 even:bg-blue-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
       <div className="flex md:items-center flex-col md:flex-row gap-4 md:gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4">
         <div className="flex flex-wrap justify-between gap-4 items-center">
           <h2 className="md:md:text-xl">الشخص المسؤول </h2>
