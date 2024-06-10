@@ -25,7 +25,9 @@ const GetMyReview = ({ item }) => {
         </div>
         <div className="flex justify-between flex-wrap mb-5">
           <h3 className=" text-black text-2xl font-bold ">التقييم :</h3>
-          <p className="text-stone-500 text-lg font-bold">{item.title}</p>
+          <p className="text-stone-500 text-lg font-bold break-words">
+            {item.title}
+          </p>
         </div>
         <div className="flex justify-between flex-wrap mb-5">
           <h3

@@ -131,7 +131,7 @@ const GetAllReports = ({ item }) => {
       </div>
       {item.suppliesFile && (
         <div className="flex flex-wrap items-center my-5 gap-2 justify-between  border-b pb-4 ">
-          <h2 className="md:text-xl">تنزيل ملفات التوريدات</h2>
+          <h2 className="text-md md:text-xl">تنزيل ملفات التوريدات</h2>
           <a
             target="_blank"
             className="bg-sky-500 px-6 py-2 text-white rounded-lg"

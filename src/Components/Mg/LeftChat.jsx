@@ -6,15 +6,13 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 import { MdDoNotDisturb } from "react-icons/md";
 import { CurrentChatContext } from "../../contexts/CurrentClickChat";
 import axios from "axios";
-import { authContext } from "../../contexts/Auth";
 import { ConvIdChatContext } from "../../contexts/ConversationId";
 import { io } from "socket.io-client";
 const LeftChat = () => {
   let { currentChat } = useContext(CurrentChatContext);
   let { convId, setConvId } = useContext(ConvIdChatContext);
-  const [onlineUsers, setOnlineUsers] = useState([]);
+  // const [onlineUsers, setOnlineUsers] = useState([]);
   let ScrollRef = useRef();
-  let { auth } = useContext(authContext);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const socket = useRef();
   let [send, setSend] = useState("");
@@ -22,6 +20,7 @@ const LeftChat = () => {
   let [waitMsg, setWaitMsg] = useState(false);
   //  get messages
   useEffect(() => {
+    console.log();
     let getMessages = () => {
       if (currentChat !== "") {
         let headers = {
@@ -50,7 +49,7 @@ const LeftChat = () => {
     return (
       <Message
         key={item?._id}
-        own={item?.sender == auth.user._id}
+        own={item?.sender == JSON.parse(localStorage.getItem("user"))._id}
         item={item}
       />
     );
@@ -68,12 +67,17 @@ const LeftChat = () => {
   }, []);
   useEffect(() => {
     arrivalMessage &&
-      convId?.members.includes(auth.user._id) &&
+      convId?.members?.includes(
+        JSON.parse(localStorage.getItem("user"))?._id
+      ) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, convId]);
   useEffect(() => {
-    socket.current?.emit("addUser", auth?.user?._id);
-  }, [auth]);
+    socket.current?.emit(
+      "addUser",
+      JSON.parse(localStorage.getItem("user"))._id
+    );
+  }, [JSON.parse(localStorage.getItem("user"))]);
   // console.log(convId);
   // useEffect(() => {
   //   getMessages();
@@ -118,10 +122,10 @@ const LeftChat = () => {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     const receiverId = convId.members.find(
-      (member) => member !== auth.user._id
+      (member) => member !== JSON.parse(localStorage.getItem("user"))._id
     );
     socket.current?.emit("sendMessage", {
-      senderId: auth.user._id,
+      senderId: JSON.parse(localStorage.getItem("user"))._id,
       receiverId: receiverId,
       text: send,
     });

@@ -46,7 +46,7 @@ const GetMyTask = ({ makeDone, item, managerTasks }) => {
         </div>
         <div className="flex justify-between flex-wrap mb-5">
           <h3 className=" text-black text-2xl font-bold ">المهمة :</h3>
-          <div className=" text-stone-500 text-lg  leading-loose">
+          <div className=" text-stone-500 text-lg break-words  leading-loose">
             {item.task}
           </div>
         </div>
