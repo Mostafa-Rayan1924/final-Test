@@ -28,7 +28,7 @@ const LeftChat = () => {
         };
         axios
           .get(
-            `https://mg-company.onrender.com/mg/chat/message/${convId._id}`,
+            `https://mg-company.onrender.com/mg/chat/message/${convId?._id}`,
             {
               headers: headers,
             }

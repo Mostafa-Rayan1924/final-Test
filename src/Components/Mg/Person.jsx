@@ -38,7 +38,7 @@ const Person = ({ item }) => {
       <div
         onClick={handleConv}
         className={`flex items-center  ${
-          currentChat._id == item._id ? "bg-slate-200 rounded-lg" : ""
+          currentChat?._id == item._id ? "bg-slate-200 rounded-lg" : ""
         }  gap-4 mb-3 p-2   cursor-pointer transition-all duration-300 hover:bg-slate-200 hover:rounded-lg`}>
         <img
           className="w-[60px] h-[60px] object-cover rounded-full"
