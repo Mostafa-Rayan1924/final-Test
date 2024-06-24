@@ -9,8 +9,20 @@ const GetAllReports = ({ item }) => {
   const filteredSupplies = item.Supplies.filter(
     (ele) => ele && Object.keys(ele).length > 0
   );
+  let handlePrint = () => {
+    const printContents = document.getElementById("report-content")?.innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+    document.body.innerHTML = originalContents;
+    window.location.reload();
+  };
   return (
-    <div className="shadow  odd:bg-slate-50 even:bg-blue-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
+    <div
+      id="report-content"
+      className="shadow  odd:bg-slate-50 even:bg-blue-50 transition-all duration-300 border-[4px] border-transparent mb-10 hover:border-b-sky-400 p-6 rounded-lg">
       <div className="flex md:items-center flex-col md:flex-row gap-4 md:gap-2 flex-wrap justify-between border-b-2 mb-5 pb-4">
         <div className="flex flex-wrap justify-between gap-4 items-center">
           <h2 className="md:md:text-xl">الشخص المسؤول </h2>
@@ -201,6 +213,11 @@ const GetAllReports = ({ item }) => {
           </a>
         </div>
       )}
+      <button
+        className="w-[200px] hover:bg-black hover:text-white transition-all duration-300 mx-auto rounded-lg text-white bg-yellow-400 mt-5 block py-2 text-2xl "
+        onClick={handlePrint}>
+        اطبع
+      </button>
     </div>
   );
 };

@@ -71,7 +71,7 @@ export default function App() {
                     element={
                       <ProtectedRoute
                         user={user}
-                        allowedRoles={["مدير", "مكتب فني", "الادارة"]}
+                        allowedRoles={["مدير", "الادارة"]}
                       />
                     }>
                     <Route path="weeklyTaskSend" element={<WeeklyTaskSend />} />
@@ -111,12 +111,26 @@ export default function App() {
                     element={
                       <ProtectedRoute
                         user={user}
-                        allowedRoles={["محاسب", "مهندس مدني", "مشرف"]}
+                        allowedRoles={[
+                          "محاسب",
+                          "مكتب فني",
+                          "مهندس مدني",
+                          "مشرف",
+                        ]}
                       />
                     }>
                     <Route path="dailyTask" element={<DailyTask />} />
                     <Route path="weeklyTask" element={<WeeklyTask />} />
                     <Route path="tasks" element={<TasksToMake />} />
+                  </Route>
+                  <Route
+                    element={
+                      <ProtectedRoute
+                        user={user}
+                        allowedRoles={["مكتب فني", "مدير", "الادارة"]}
+                      />
+                    }>
+                    <Route path="weeklyTask" element={<WeeklyTask />} />
                   </Route>
 
                   {/* Management review */}

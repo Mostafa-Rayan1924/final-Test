@@ -12,7 +12,7 @@ const Login = () => {
   let navigate = useNavigate();
   let { auth, setAuth } = useContext(authContext);
   let [formInputs, setFormInputs] = useState({
-    name: "elsayedahmed5000654@gmail.com",
+    name: "",
     password: "test1234",
   });
   // send login

@@ -139,10 +139,17 @@ const TaskSend = ({ title, apiUrl }) => {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
     };
+    //
     axios
       .get(
-        `https://mg-company.onrender.com/mg/project/?location=${
-          JSON.parse(localStorage.getItem("user")).location
+        `
+        ${
+          JSON.parse(localStorage.getItem("user"))?.role == "محاسب" ||
+          JSON.parse(localStorage.getItem("user"))?.role == "مكتب فني"
+            ? "https://mg-company.onrender.com/mg/project/"
+            : `https://mg-company.onrender.com/mg/project/?location=${
+                JSON.parse(localStorage.getItem("user")).location
+              }`
         }`,
         {
           headers: headers,
@@ -159,10 +166,10 @@ const TaskSend = ({ title, apiUrl }) => {
   useEffect(() => {
     getProjects();
   }, []);
-  let workersMap = workers.map((item) => {
+  let workersMap = workers.map((item, index) => {
     return (
       <Workers
-        key={item.id}
+        key={index}
         item={item}
         workers={workers}
         setWorkers={setWorkers}
@@ -170,10 +177,10 @@ const TaskSend = ({ title, apiUrl }) => {
     );
   });
 
-  let tawredatMap = tawredat.map((item) => {
+  let tawredatMap = tawredat.map((item, index) => {
     return (
       <Eltawredat
-        key={item.id}
+        key={index}
         item={item}
         tawredat={tawredat}
         setTawerdat={setTawerdat}
@@ -181,9 +188,10 @@ const TaskSend = ({ title, apiUrl }) => {
     );
   });
 
-  let equipmentsMap = equipments.map((item) => {
+  let equipmentsMap = equipments.map((item, index) => {
     return (
       <Equipments
+        key={index}
         item={item}
         equipments={equipments}
         setEquipments={setEquipments}
