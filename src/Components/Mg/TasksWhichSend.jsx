@@ -5,6 +5,7 @@ import Loader from "../InAll/Loader/Loader";
 import Filter from "./Filter";
 import GetAllReports from "../Mg/GetAllReports";
 import { AllnamesByRole } from "../dataOfSelectBox";
+import { useLocation } from "react-router-dom";
 const TasksWhichSend = ({
   title,
   apiUrl,
@@ -16,6 +17,7 @@ const TasksWhichSend = ({
   // maping in names to filter by it
   let [selectNameToFilter, setSelectNameToFilter] = useState("");
   let [namesByRole, setNamesByRole] = useState([]);
+  let location = useLocation();
 
   const fetchUsers = () => {
     let headers = {
@@ -95,6 +97,7 @@ const TasksWhichSend = ({
         console.log(error.response);
       });
   }
+  // filter by date
   function handleFilter(e) {
     let headers = {
       authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -107,8 +110,17 @@ const TasksWhichSend = ({
         }
       )
       .then((res) => {
-        setAllTasksGet(res.data.data.result);
-        //
+        let arr = [];
+        if (location.pathname.includes("WeeklyTaskSend")) {
+          res.data.data.result.filter((item) => {
+            return item.CreatedBy.role == "مكتب فني" ? arr.push(item) : arr;
+          });
+        } else {
+          res.data.data.result.filter((item) => {
+            return item.CreatedBy.role !== "مكتب فني" ? arr.push(item) : arr;
+          });
+        }
+        setAllTasksGet(arr);
       })
       .catch((error) => {
         console.log(error.response?.data?.message);

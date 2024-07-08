@@ -12,7 +12,21 @@ export let dataOftype = [
   "بنا",
 ];
 // export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
-export let TypeOfMowardeen = ["حداده", "سباكة", "نقاشه", "نجاره", "كهرباء"];
+export let TypeOfMowardeen = [
+  "دبش",
+  "حداده",
+  "سباكة",
+  "نقاشه",
+  "نجاره",
+  "كهرباء",
+  "سن",
+  "رمله ",
+  "اسمنت ",
+  "سن بودره",
+  "سن ٦ بودره",
+  "سن ١١ بودره",
+  "دقشوم",
+];
 
 export let TypeOfEquips = [
   "جليدر",

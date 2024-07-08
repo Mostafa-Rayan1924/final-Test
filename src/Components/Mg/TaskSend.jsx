@@ -146,8 +146,8 @@ const TaskSend = ({ title, apiUrl }) => {
         ${
           JSON.parse(localStorage.getItem("user"))?.role == "محاسب" ||
           JSON.parse(localStorage.getItem("user"))?.role == "مكتب فني"
-            ? "https://mg-company.onrender.com/mg/project/"
-            : `https://mg-company.onrender.com/mg/project/?location=${
+            ? "https://mg-company.onrender.com/mg/listProject/"
+            : `https://mg-company.onrender.com/mg/listProject/?location=${
                 JSON.parse(localStorage.getItem("user")).location
               }`
         }`,
@@ -156,6 +156,7 @@ const TaskSend = ({ title, apiUrl }) => {
         }
       )
       .then((res) => {
+        console.log(res.data.data);
         setProjects(res.data.data.result);
       })
       .catch((error) => {
@@ -216,6 +217,7 @@ const TaskSend = ({ title, apiUrl }) => {
           <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2">اسم المشروع</label>
             <select
+              required
               value={proName}
               onChange={(e) => {
                 setProName(e.target.value);
@@ -225,7 +227,7 @@ const TaskSend = ({ title, apiUrl }) => {
               placeholder="اسم المشروع">
               <option className="hidden">اختر المشروع</option>
               {projects?.map((item) => (
-                <option key={item?.id}>{item?.projectName}</option>
+                <option key={item?.id}>{item?.name}</option>
               ))}
             </select>
           </div>

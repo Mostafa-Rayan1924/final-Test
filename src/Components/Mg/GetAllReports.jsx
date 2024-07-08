@@ -1,7 +1,7 @@
 const GetAllReports = ({ item }) => {
   // Filter out empty arrays
   const filteredEmployees = item.Employee.filter(
-    (ele) => ele && Object.keys(ele).length > 0
+    (ele) => ele && Object.keys(ele).length != ""
   );
   const filteredEquipments = item.Equipments.filter(
     (ele) => ele && Object.keys(ele).length > 0
@@ -89,6 +89,9 @@ const GetAllReports = ({ item }) => {
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black"> اجمالي سعر المعده :</span>
                 {ele.price}
+              </p>
+              <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
+                <span className="text-black">كمية الغاز :</span> {ele.amount}
               </p>
               <p className="text-[#666666B2] flex justify-between font-bold mb-2 text-lg">
                 <span className="text-black"> اسم السائق :</span>
