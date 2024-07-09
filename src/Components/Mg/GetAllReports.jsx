@@ -1,5 +1,6 @@
 const GetAllReports = ({ item }) => {
-  console.log(item.suppliesFile);
+  const date = new Date(item.createdAt);
+
   // Filter out empty arrays
   const filteredEmployees = item.Employee.filter(
     (ele) => ele && Object.keys(ele).length != ""
@@ -30,12 +31,28 @@ const GetAllReports = ({ item }) => {
           <p className="text-[#666666B2] font-bold">{item.CreatedBy?.name}</p>
         </div>
         <div className="flex flex-wrap justify-between gap-4 items-center">
+          <h2 className="md:text-xl">اسم المشروع</h2>
+          <p className="text-[#666666B2] font-bold">{item?.ProjectName}</p>
+        </div>
+        {item.ProjectDescription ? (
+          <div className="flex flex-wrap justify-between gap-4 items-center">
+            <h2 className="md:text-xl">تفصيله مكان المشروع</h2>
+            <p className="text-[#666666B2] font-bold">
+              {item?.ProjectDescription}
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
+        <div className="flex flex-wrap justify-between gap-4 items-center">
           <h2 className="md:text-xl">التاريخ</h2>
           <p className="text-[#666666B2] font-bold">{item.Date}</p>
         </div>
         <div className="flex flex-wrap justify-between gap-4 items-center">
-          <h2 className="md:text-xl">اسم المشروع</h2>
-          <p className="text-[#666666B2] font-bold">{item?.ProjectName}</p>
+          <h2 className="md:text-xl">الوقت</h2>
+          <p className="text-[#666666B2] font-bold">
+            {date?.toLocaleTimeString()}
+          </p>
         </div>
       </div>
 

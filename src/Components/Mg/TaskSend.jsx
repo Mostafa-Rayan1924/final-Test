@@ -12,6 +12,7 @@ import { authContext } from "../../contexts/Auth";
 
 const TaskSend = ({ title, apiUrl }) => {
   let [load, setLoad] = useState(false);
+
   let { auth, setAuth } = useContext(authContext);
 
   // Initial states
@@ -59,6 +60,7 @@ const TaskSend = ({ title, apiUrl }) => {
   let [reqiurments, setReqiurments] = useState("");
   let [file, setFile] = useState([]);
   let [fileTawredat, setFileTawredat] = useState([]);
+  let [ProjectDescription, setProjectDescription] = useState("");
 
   useEffect(() => {
     if (location?.pathname?.includes("dailyTask")) {
@@ -96,7 +98,7 @@ const TaskSend = ({ title, apiUrl }) => {
     formdata.append("ExternalObstacles", Eobstacles);
     formdata.append("Requirements", reqiurments);
     formdata.append("category", cat);
-
+    formdata.append("ProjectDescription", ProjectDescription);
     if (file !== null) {
       for (let i = 0; i < file.length; i++) {
         formdata.append(`files`, file[i]);
@@ -231,6 +233,17 @@ const TaskSend = ({ title, apiUrl }) => {
               ))}
             </select>
           </div>
+          <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
+            <label className="w-full lg:w-1/2"> اضف عنوان تفصيلي</label>
+            <input
+              className="w-full lg:w-1/2  h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400"
+              value={ProjectDescription}
+              onChange={(e) => setProjectDescription(e.target.value)}
+              placeholder="اضف عنوان تفصيلي"
+              type="text"
+            />
+          </div>
+
           {/*  ألعمال */}
           <div className="relative w-full">{workersMap}</div>
           {/* التوريدات */}
