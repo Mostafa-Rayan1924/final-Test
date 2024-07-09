@@ -1,4 +1,5 @@
 const GetAllReports = ({ item }) => {
+  console.log(item.suppliesFile);
   // Filter out empty arrays
   const filteredEmployees = item.Employee.filter(
     (ele) => ele && Object.keys(ele).length != ""
@@ -144,7 +145,7 @@ const GetAllReports = ({ item }) => {
           </div>
         ))}
       </div>
-      {item.suppliesFile && (
+      {item.suppliesFile.length > 0 && (
         <div className="flex flex-wrap items-center my-5 gap-2 justify-between  border-b pb-4 ">
           <h2 className="text-md md:text-xl">تنزيل ملفات التوريدات</h2>
           <a
@@ -204,7 +205,7 @@ const GetAllReports = ({ item }) => {
       </div>
       {/* End Requirements */}
 
-      {item.files && (
+      {item.files.length > 0 && (
         <div className="flex flex-wrap gap-2 items-center justify-between">
           <h2 className="md:text-xl">تنزيل الملفات</h2>
           <a
