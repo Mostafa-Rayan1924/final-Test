@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TypeOfMowardeen } from "../dataOfSelectBox";
 import { nameOfMowardeen } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
+import Select from "react-select";
 
 const Eltawredat = ({ tawredat, setTawerdat, item }) => {
   // states for tawredat
@@ -56,7 +57,48 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
     });
     setTawerdat(TawredatDel);
   }
-  // console.log(tawredat);
+  const uniqueOptions = [...new Set(TypeOfMowardeen)].map((option) => ({
+    value: option,
+    label: option,
+  }));
+  // Custom styles
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      border: "1px solid #ccc",
+      backgroundColor: "white",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#888",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      zIndex: 20,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#ddd"
+        : state.isFocused
+        ? "#eee"
+        : "white",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#f0f0f0",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#888",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "black",
+    }),
+  };
   return (
     <div className="flex-col flex  mb-10  w-full">
       <label className="w-full mb-5"> التوريدات</label>
@@ -76,22 +118,17 @@ const Eltawredat = ({ tawredat, setTawerdat, item }) => {
             );
           })}
         </select> */}
-        <select
-          value={typeOfMowared}
-          onChange={(e) => {
-            settypeOfMowared(e.target.value);
+        <Select
+          options={uniqueOptions}
+          placeholder="نوع التوريد"
+          isSearchable
+          value={uniqueOptions.find((option) => option.value === typeOfMowared)}
+          onChange={(selectedOption) => {
+            settypeOfMowared(selectedOption ? selectedOption.value : null);
           }}
-          className="h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400">
-          {TypeOfMowardeen.map((item) => {
-            return (
-              <>
-                <option className="hidden">نوع التوريد</option>
-
-                <option key={item}>{item}</option>
-              </>
-            );
-          })}
-        </select>
+          styles={customStyles}
+          className="h-[38px] pr-1.5 "
+        />
         <input
           placeholder="العدد "
           type="number"

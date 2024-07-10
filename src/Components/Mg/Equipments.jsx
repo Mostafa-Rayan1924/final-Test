@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { TypeOfEquips } from "../dataOfSelectBox";
-import { nameOfEquip } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
-
+import Select from "react-select";
 const Equipments = ({ equipments, setEquipments, item }) => {
   // states for tawredat
   let [OkState, setOkstate] = useState(false);
@@ -55,26 +54,66 @@ const Equipments = ({ equipments, setEquipments, item }) => {
     });
     setEquipments(EquipmentsDel);
   }
+  const uniqueOptions = [...new Set(TypeOfEquips)].map((option) => ({
+    value: option,
+    label: option,
+  }));
+  // Custom styles
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      border: "1px solid #ccc",
+      backgroundColor: "white",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#888",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      zIndex: 20,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#ddd"
+        : state.isFocused
+        ? "#eee"
+        : "white",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#f0f0f0",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#888",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "black",
+    }),
+  };
   return (
     <div className="flex-col flex  mb-10  w-full">
       <label className="w-full mb-5"> المعدات</label>
       <div className="w-full mb-4 relative grid md:grid-cols-4 grid-cols-2 gap-2">
-        <select
-          value={typeOfEquipments}
-          onChange={(e) => {
-            settypeOfEquipments(e.target.value);
+        <Select
+          options={uniqueOptions}
+          placeholder="نوع المعدة"
+          isSearchable
+          value={uniqueOptions.find(
+            (option) => option.value === typeOfEquipments
+          )}
+          onChange={(selectedOption) => {
+            settypeOfEquipments(selectedOption ? selectedOption.value : null);
           }}
-          className="h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400">
-          {TypeOfEquips.map((item) => {
-            return (
-              <>
-                <option className="hidden">نوع المعدة</option>
+          styles={customStyles}
+          className="h-[38px] pr-1.5 "
+        />
 
-                <option key={item}>{item}</option>
-              </>
-            );
-          })}
-        </select>
         <input
           placeholder="اجمالي سعر المعده"
           type="number"

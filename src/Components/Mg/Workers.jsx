@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { dataOftype } from "../dataOfSelectBox";
 import { MdDelete } from "react-icons/md";
-
+import Select from "react-select";
 const Workers = ({ workers, setWorkers, item }) => {
   let [OkState, setOkstate] = useState(false);
   let [workersTextArea, setWorkersTextArea] = useState("");
@@ -51,27 +51,67 @@ const Workers = ({ workers, setWorkers, item }) => {
       setOkstate(false);
     }
   }, [workersTextArea, workersInpType, workersInpCount, workersSalary]);
+  const uniqueOptions = [...new Set(dataOftype)].map((option) => ({
+    value: option,
+    label: option,
+  }));
+  // Custom styles
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
 
+      borderRadius: "0.5rem",
+      border: "1px solid #ccc",
+      backgroundColor: "white",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#888",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      zIndex: 20,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#ddd"
+        : state.isFocused
+        ? "#eee"
+        : "white",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#f0f0f0",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#888",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "black",
+    }),
+  };
   return (
     <div>
       <div className="flex  relative  flex-col md:flex-row  gap-3 md:items-center justify-between mb-4   w-full">
         <label className="w-full lg:w-1/2">العمال وعددهم</label>
         <div className="w-full relative lg:w-1/2 flex md:flex-row flex-col items-center gap-2 ">
-          <select
-            value={workersInpType}
-            onChange={(e) => {
-              setWorkersInpType(e.target.value);
+          <Select
+            options={uniqueOptions}
+            placeholder="الحرفه"
+            isSearchable
+            value={uniqueOptions.find(
+              (option) => option.value === workersInpType
+            )}
+            onChange={(selectedOption) => {
+              setWorkersInpType(selectedOption ? selectedOption.value : null);
             }}
-            className="w-full lg:w-1/2  h-[38px] pr-1.5 py-2 focus:outline-none bg-white rounded-lg border border-neutral-400">
-            {dataOftype.map((item) => {
-              return (
-                <>
-                  <option className="hidden">الحرفة</option>
-                  <option key={item}>{item}</option>
-                </>
-              );
-            })}
-          </select>
+            styles={customStyles}
+            className="w-full lg:w-1/2 pr-1.5 h-[38px]"
+          />
           <input
             value={workersInpCount}
             onChange={(e) => {

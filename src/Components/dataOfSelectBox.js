@@ -10,6 +10,13 @@ export let dataOftype = [
   "تكسير",
   "عادي",
   "بنا",
+  "مبلط",
+  "عزل",
+  "نجار مسلح",
+  "نجار عادي",
+  "حداد مسلح",
+  "حداد steel",
+  "نقاش",
 ];
 // export let nameOfMowardeen = ["حديد عز", "محمد اسمنت", "ابو هاشم"];
 export let TypeOfMowardeen = [
@@ -36,6 +43,9 @@ export let TypeOfEquips = [
   "عربية مياه",
   "سياره نقل كبيره",
   "سياره خدمه نص نقل",
+  "قاطره",
+  "صال",
+  "لانش",
 ];
 export let AllnamesByRole = [
   "كريم يونس",

@@ -9,7 +9,7 @@ import Eltawredat from "./Eltawredat";
 import { useLocation } from "react-router-dom";
 import Equipments from "./Equipments";
 import { authContext } from "../../contexts/Auth";
-
+import Select from "react-select";
 const TaskSend = ({ title, apiUrl }) => {
   let [load, setLoad] = useState(false);
 
@@ -85,10 +85,10 @@ const TaskSend = ({ title, apiUrl }) => {
   };
 
   const handleSubmit = (e) => {
-    setLoad(true);
     e.preventDefault();
+    setLoad(true);
     let formdata = new FormData();
-    formdata.append("ProjectName", proName);
+    formdata.append("ProjectName", proName.value);
     formdata.append("Equipments", JSON.stringify(equipments));
     formdata.append("Supplies", JSON.stringify(tawredat));
     formdata.append("Employee", JSON.stringify(workers));
@@ -201,7 +201,48 @@ const TaskSend = ({ title, apiUrl }) => {
       />
     );
   });
-
+  const uniqueOptions = [...new Set(projects)].map((option) => ({
+    value: option.name,
+    label: option.name,
+  }));
+  // Custom styles
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      border: "1px solid #ccc",
+      backgroundColor: "white",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#888",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      zIndex: 20,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#ddd"
+        : state.isFocused
+        ? "#eee"
+        : "white",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#f0f0f0",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#888",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "black",
+    }),
+  };
   return (
     <>
       {load && <Loader />}
@@ -218,7 +259,17 @@ const TaskSend = ({ title, apiUrl }) => {
           {/* اسم المشروع */}
           <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2">اسم المشروع</label>
-            <select
+            <Select
+              options={uniqueOptions}
+              placeholder="اسم المشروع"
+              isSearchable
+              value={proName}
+              styles={customStyles}
+              className="w-full lg:w-1/2  h-[38px] pr-1.5 "
+              onChange={setProName}
+            />
+
+            {/* <select
               required
               value={proName}
               onChange={(e) => {
@@ -231,7 +282,7 @@ const TaskSend = ({ title, apiUrl }) => {
               {projects?.map((item) => (
                 <option key={item?.id}>{item?.name}</option>
               ))}
-            </select>
+            </select> */}
           </div>
           <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2"> اضف عنوان تفصيلي</label>
