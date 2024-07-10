@@ -97,7 +97,7 @@ const Workers = ({ workers, setWorkers, item }) => {
   return (
     <div>
       <div className="flex  relative  flex-col md:flex-row  gap-3 md:items-center justify-between mb-4   w-full">
-        <label className="w-full lg:w-1/2">العمال وعددهم</label>
+        <label className="w-full lg:w-1/2">الصنايعية وعددهم</label>
         <div className="w-full relative lg:w-1/2 flex md:flex-row flex-col items-center gap-2 ">
           <Select
             options={uniqueOptions}

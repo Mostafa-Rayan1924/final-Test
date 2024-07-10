@@ -246,16 +246,14 @@ const TaskSend = ({ title, apiUrl }) => {
   return (
     <>
       {load && <Loader />}
-      <div className="container   lg:mx-2 my-5">
+      <div className="container   lg:mx-2 mt-5 mb-10">
         <Link to={"/"}>
           <img className="hidden lg:block" src={logo} />
         </Link>
         <h2 className="text-yellow-500 text-2xl md:text-4xl lg:text-5xl font-bold my-5">
           {title}
         </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="my-10 flex flex-col justify-center items-center w-[95%]  md:w-[80%]">
+        <form className="mt-10 flex flex-col justify-center items-center w-[95%]  md:w-[80%]">
           {/* اسم المشروع */}
           <div className="flex   flex-col md:flex-row gap-3 md:items-center justify-between mb-10  w-full">
             <label className="w-full lg:w-1/2">اسم المشروع</label>
@@ -430,13 +428,12 @@ const TaskSend = ({ title, apiUrl }) => {
               </svg>
             </label>
           </div>
-
-          <div className="">
-            <button className="bg-yellow-500  py-3 px-28 rounded-xl text-white font-bold text-2xl w-fit ">
-              إرسال
-            </button>
-          </div>
         </form>
+        <button
+          onClick={handleSubmit}
+          className="bg-yellow-500  py-3 px-28 rounded-xl mx-auto block text-white font-bold text-2xl w-fit ">
+          إرسال
+        </button>
       </div>
     </>
   );
