@@ -44,6 +44,8 @@ const Login = () => {
         let go =
           response.data.data.result.role == "مدير"
             ? "dailyTaskSend"
+            : response.data.data.result.role == "محاسب"
+            ? "mohasebTask"
             : response.data.data.result.role == "مكتب فني"
             ? "weeklyTask"
             : response.data.data.result.role == "الادارة"

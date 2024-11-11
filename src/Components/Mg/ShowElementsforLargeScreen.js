@@ -281,7 +281,10 @@ const ShowElementsforLargeScreen = () => {
       {/* list of mohasben */}
       {auth.user?.role == "محاسب" ? (
         <ul>
-          <NavLink style={navActive} to={"dailyTask"} className={"flex  gap-2"}>
+          <NavLink
+            style={navActive}
+            to={"mohasebTask"}
+            className={"flex  gap-2"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

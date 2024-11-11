@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MainTitle2 } from "../../Components/InAll/MainTitle2";
 import axios from "axios";
 import Project from "./Project";
-import Loader from "../InAll/Loader/Loader";
+import { RiLoader2Fill } from "react-icons/ri";
 const ProjectsParent = () => {
   let [projects, setProjects] = useState([]);
   let [load, setLoad] = useState(true);
@@ -29,9 +29,9 @@ const ProjectsParent = () => {
   let projectsMap = projects.map((item) => {
     return <Project key={item._id} item={item} />;
   });
-  if (load) {
-    return <Loader />;
-  }
+  // if (load) {
+  //   return <Loader />;
+  // }
   function handleFilter(id) {
     setLoad(true);
     setActive(id);
@@ -88,15 +88,24 @@ const ProjectsParent = () => {
           انشاءات بحرية
         </span>
       </div>
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projects.length == 0 ? (
-          <h2 className="text-center text-2xl dark:text-white">
-            ... يتم التحميل الان
-          </h2>
-        ) : (
-          projectsMap
-        )}
-      </div>
+      {load ? (
+        <div className="container w-full mx-auto text-center mt-10 dark:text-white">
+          <RiLoader2Fill
+            size={50}
+            className="animate-spin text-center w-full "
+          />
+        </div>
+      ) : (
+        <div className="container grid grid-cols-1 md:grid-cols-2 place-content-center lg:grid-cols-3 gap-10">
+          {projects.length == 0 ? (
+            <h2 className="text-center text-2xl dark:text-white">
+              ... يتم التحميل الان
+            </h2>
+          ) : (
+            projectsMap
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -25,6 +25,7 @@ import Chats from "./Components/Mg/Chats";
 import Review from "./Components/Mg/Review";
 import AllReview from "./Components/Mg/AllReview";
 import ProtectedRoute from "./Components/Mg/ProtectedRoute";
+import MohasebTaskToSend from "./Components/Mg/allDailyReports/MohasebTaskToSend";
 
 export default function App() {
   const [themes, setThemes] = useState(false);
@@ -88,6 +89,12 @@ export default function App() {
                     }>
                     <Route path="sendTasks" element={<TasksToSend />} />
                     <Route path="allTasks" element={<AllTasks />} />
+                  </Route>
+                  <Route
+                    element={
+                      <ProtectedRoute user={user} allowedRoles={["محاسب"]} />
+                    }>
+                    <Route path="mohasebTask" element={<MohasebTaskToSend />} />
                   </Route>
                   <Route
                     element={
